@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, BookfanActivity!</string>
+    <string name="app_name">Bookfan</string>
+
+    <!-- LOGIN  -->
+    <string name="login_fb_error">Neodařilo se přihlásit přes Facebook. Zkontrolujte připojení k internetu a zkuste to prosím později.</string>
+</resources>
