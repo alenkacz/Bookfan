@@ -26,7 +26,7 @@ public class LoginActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout.activity_login);
         
         mPrefs = getPreferences(MODE_PRIVATE);
         mFacebook = new Facebook(APP_ID);

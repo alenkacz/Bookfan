@@ -12,5 +12,10 @@
     <string name="login_password">heslo</string>
     <string name="login_btn">Přihlásit se</string>
     <string name="login_fb_btn">Přihlásit se pomocí Facebooku</string>
-
+    
+    <!-- BOOKS LIST  -->
+	<string name="list_no_books">Žádné knihy, přidej první</string>
+	
+    <!-- TEMPORARY  -->
+    <string name="book_name">Název knihy</string>
 </resources>
