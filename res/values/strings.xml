@@ -6,4 +6,11 @@
 
     <!-- LOGIN  -->
     <string name="login_fb_error">Neodařilo se přihlásit přes Facebook. Zkontrolujte připojení k internetu a zkuste to prosím později.</string>
+
+    <string name="login_heading">Přihlašte se</string>
+    <string name="login_email">email</string>
+    <string name="login_password">heslo</string>
+    <string name="login_btn">Přihlásit se</string>
+    <string name="login_fb_btn">Přihlásit se pomocí Facebooku</string>
+
 </resources>

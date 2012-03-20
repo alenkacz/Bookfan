@@ -2,11 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
-
+    android:orientation="vertical"
+    style="@style/LoginScreen" >
+    
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Login" />
-
+        android:text="@string/login_heading"
+        android:gravity="center"
+        style="@style/Heading"
+        />
+    
+    <EditText
+        android:id="@+id/login_email"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/login_email" />  
+          
+    <EditText
+        android:id="@+id/login_password"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/login_password" />
+    
+    <Button 
+        android:id="@+id/login_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login_btn"
+        />
+    
+    <Button 
+        android:id="@+id/login_fb_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login_fb_btn"
+        android:drawableLeft="@drawable/facebook_logo"
+        />
 </LinearLayout>

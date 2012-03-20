@@ -1,18 +1,18 @@
 package cz.alenkacz.bookfan.activity;
 
-import com.facebook.android.DialogError;
-import com.facebook.android.Facebook;
 import com.facebook.android.Facebook.DialogListener;
-import com.facebook.android.FacebookError;
+import com.facebook.android.*;
 
 import cz.alenkacz.bookfan.R;
-import cz.alenkacz.bookfan.R.layout;
 import cz.alenkacz.bookfan.tools.Constants;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class LoginActivity extends Activity {
@@ -20,26 +20,46 @@ public class LoginActivity extends Activity {
 	private Facebook mFacebook;
 	private SharedPreferences mPrefs;
 	
+	private Button mLoginBtn;
+	private Button mFacebookLoginBtn;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.login);
         
         mPrefs = getPreferences(MODE_PRIVATE);
         mFacebook = new Facebook(APP_ID);
         
-        if(!isLoggedIn()) {
-        	mFacebook.authorize(this, new LoginDialogListener());
-        } else {
-        	final Intent i = new Intent(this, MainActivity.class);
-        	startActivity(i);
-        }
-        
+        setupViews();
     }
     
     public void onResume() {    
         super.onResume();
         mFacebook.extendAccessTokenIfNeeded(this, null);
+    }
+    
+    private void setupViews() {
+    	mLoginBtn = (Button) findViewById(R.id.login_btn);
+    	mFacebookLoginBtn = (Button) findViewById(R.id.login_fb_btn);
+    	
+    	mLoginBtn.setOnClickListener(new OnClickListener(){
+
+			public void onClick(View v) {
+				final Intent i = new Intent(getApplicationContext(), MainListActivity.class);
+	        	startActivity(i);
+			}
+    		
+    	});
+    	
+    	mFacebookLoginBtn.setOnClickListener(new OnClickListener(){
+
+			public void onClick(View v) {
+				final Intent i = new Intent(getApplicationContext(), MainListActivity.class);
+	        	startActivity(i);
+			}
+    		
+    	});
     }
     
     private boolean isLoggedIn() {

@@ -5,7 +5,7 @@ import cz.alenkacz.bookfan.R.layout;
 import android.app.Activity;
 import android.os.Bundle;
 
-public class MainActivity extends Activity {
+public class MainListActivity extends Activity {
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
