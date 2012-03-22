@@ -10,6 +10,10 @@
 	  <item name="android:padding">10dip</item>
 	</style>
 	
+    <style name="BookScreen">
+	  <item name="android:padding">20dip</item>
+	</style>
+        
     <style name="Heading">
 	  <item name="android:textSize">20dip</item>
 	  <item name="android:layout_marginTop">10dip</item>

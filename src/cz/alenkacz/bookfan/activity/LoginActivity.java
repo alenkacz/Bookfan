@@ -42,7 +42,7 @@ public class LoginActivity extends Activity {
     private void setupViews() {
     	mLoginBtn = (Button) findViewById(R.id.login_btn);
     	mFacebookLoginBtn = (Button) findViewById(R.id.login_fb_btn);
-    	
+    	 
     	mLoginBtn.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View v) {

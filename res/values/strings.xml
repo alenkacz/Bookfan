@@ -16,6 +16,19 @@
     <!-- BOOKS LIST  -->
 	<string name="list_no_books">Žádné knihy, přidej první</string>
 	
+    <!-- BOOKS DETAIL  -->
+    <string name="book_detail_add_label">Přidat do</string>
+    <string name="book_detail_add_btn">Vložit</string>
+    <string name="book_detail_cancel_btn">Zrušit</string>
+    <string name="book_detail_more_btn">Více informací</string>
+	
     <!-- TEMPORARY  -->
     <string name="book_name">Název knihy</string>
+    <string name="book_author">Autor knihy</string>
+    <string name="book_isbn">ISBN</string>
+    
+    <string-array name="shelf_array">
+        <item>Přečtené</item>
+        <item>K přečtení</item>
+    </string-array>
 </resources>
