@@ -1,14 +1,20 @@
 package cz.alenkacz.bookfan.activity;
 
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import com.facebook.android.Facebook.DialogListener;
 import com.facebook.android.*;
 
 import cz.alenkacz.bookfan.R;
+import cz.alenkacz.bookfan.dto.UserLogin;
 import cz.alenkacz.bookfan.tools.Constants;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -108,5 +114,36 @@ public class LoginActivity extends Activity {
 			// intentionally nothing
 		}
     	
+    }
+    
+    private class LoginAsyncTask extends AsyncTask<UserLogin, Void, String> {
+        protected String doInBackground(UserLogin... user) {
+        	UserLogin userLogin;
+        	if(user.length > 0) {
+        		userLogin = user[0];
+        	} else {
+        		return null;
+        	}
+        	
+        	/*HttpClient hc = new DefaultHttpClient();
+			HttpPost post = new HttpPost(_serverUrl);
+
+			StringEntity se = new StringEntity(content,HTTP.UTF_8);
+			se.setContentType("text/xml");
+
+			post.setHeader("Content-Type","application/xml;charset=UTF-8");
+			post.setEntity(se);
+
+			HttpResponse rp = hc.execute(post);*/
+			return null;
+        }
+
+        protected void onProgressUpdate(Integer... progress) {
+            
+        }
+
+        protected void onPostExecute(String result) {
+            // TODO
+        }
     }
 }

@@ -46,11 +46,11 @@ public class MainListActivity extends Activity {
 		mAddButton.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View arg0) {
-				Intent intent = new Intent(getApplicationContext(), BookDetailActivity.class);
-				startActivity(intent);
-				//Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-		        //intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
-		        //startActivityForResult(intent, 0);
+				//Intent intent = new Intent(getApplicationContext(), BookDetailActivity.class);
+				//startActivity(intent);
+				Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+		        intent.putExtra("SCAN_MODE", "EAN_13_MODE");
+		        startActivityForResult(intent, 0);
 			}
 			
 		});
