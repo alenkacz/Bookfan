@@ -11,9 +11,11 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.facebook.android.Facebook.DialogListener;
 import com.facebook.android.*;
+import com.google.gson.Gson;
 
 import cz.alenkacz.bookfan.R;
 import cz.alenkacz.bookfan.dto.UserLogin;
+import cz.alenkacz.bookfan.rest.pojo.LoggedUserContainer;
 import cz.alenkacz.bookfan.tools.Constants;
 import cz.alenkacz.bookfan.tools.Utils;
 
@@ -175,7 +177,16 @@ public class LoginActivity extends Activity {
         	mLoginDialog.dismiss();
         	
             if(result != null) {
-            	// TODO parse json and set logged flag
+            	LoggedUserContainer user = new Gson().fromJson(result, LoggedUserContainer.class);
+            	
+            	SharedPreferences.Editor editor = mPrefs.edit();
+                editor.putString(Constants.PREFS_LOGIN_TOKEN, user.token);
+                editor.putString(Constants.PREFS_LOGIN_USERNAME, user.userData.fullname);
+                editor.putString(Constants.PREFS_LOGIN_USERID, user.userData.userId);
+                editor.commit();
+                
+                final Intent i = new Intent(getApplicationContext(), MainListActivity.class);
+	        	startActivity(i);
             } else {
             	Toast.makeText(getApplicationContext(), getString(R.string.login_failed), 
             			Toast.LENGTH_LONG).show();
