@@ -13,6 +13,9 @@
     <string name="login_btn">Přihlásit se</string>
     <string name="login_fb_btn">Přihlásit se pomocí Facebooku</string>
     
+    <string name="login_progress">Ověřuji přihlašovací údaje...</string>
+    <string name="login_failed">Zadali jste nesprávné uživatelské jméno nebo heslo.</string>
+        
     <!-- BOOKS LIST  -->
 	<string name="list_no_books">Žádné knihy, přidej první</string>
 	

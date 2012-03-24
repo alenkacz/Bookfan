@@ -1,6 +1,11 @@
 package cz.alenkacz.bookfan.activity;
 
+import java.io.InputStream;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 
@@ -10,8 +15,10 @@ import com.facebook.android.*;
 import cz.alenkacz.bookfan.R;
 import cz.alenkacz.bookfan.dto.UserLogin;
 import cz.alenkacz.bookfan.tools.Constants;
+import cz.alenkacz.bookfan.tools.Utils;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -19,6 +26,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class LoginActivity extends Activity {
@@ -28,7 +36,11 @@ public class LoginActivity extends Activity {
 	
 	private Button mLoginBtn;
 	private Button mFacebookLoginBtn;
+	private EditText mEmailEt;
+	private EditText mPasswordEt;
 	
+	private ProgressDialog mLoginDialog;
+		
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,12 +60,13 @@ public class LoginActivity extends Activity {
     private void setupViews() {
     	mLoginBtn = (Button) findViewById(R.id.login_btn);
     	mFacebookLoginBtn = (Button) findViewById(R.id.login_fb_btn);
+    	mEmailEt = (EditText) findViewById(R.id.login_email);
+    	mPasswordEt = (EditText) findViewById(R.id.login_password);
     	 
     	mLoginBtn.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View v) {
-				final Intent i = new Intent(getApplicationContext(), MainListActivity.class);
-	        	startActivity(i);
+				processLogin();
 			}
     		
     	});
@@ -66,6 +79,19 @@ public class LoginActivity extends Activity {
 			}
     		
     	});
+    }
+    
+    /**
+     * Retrieves data from edittext and tries to authorize user against server
+     */
+    private void processLogin() {
+    	String email = mEmailEt.getText().toString();
+    	String password = mPasswordEt.getText().toString();
+    	
+    	UserLogin us = new UserLogin(email, password);
+    	mLoginDialog = ProgressDialog.show(LoginActivity.this, "", 
+    			getString(R.string.login_progress), true);
+    	new LoginAsyncTask().execute(us);
     }
     
     private boolean isLoggedIn() {
@@ -117,33 +143,43 @@ public class LoginActivity extends Activity {
     }
     
     private class LoginAsyncTask extends AsyncTask<UserLogin, Void, String> {
+    	
         protected String doInBackground(UserLogin... user) {
-        	UserLogin userLogin;
-        	if(user.length > 0) {
-        		userLogin = user[0];
-        	} else {
-        		return null;
+        	try{
+	        	UserLogin userLogin;
+	        	if(user.length > 0) {
+	        		userLogin = user[0];
+	        	} else {
+	        		return null;
+	        	}
+	        	
+	        	HttpClient hc = new DefaultHttpClient();
+				HttpGet get = new HttpGet(Utils.getLoginUrl(userLogin));
+	
+				HttpResponse resp = hc.execute(get);
+				int status = resp.getStatusLine().getStatusCode();
+				if(status == 200) {
+					InputStream isContent = resp.getEntity().getContent();
+					
+					String content = Utils.inputStreamToString(isContent);
+					return content;
+				}
+        	} catch(Exception e) {
+        		e.printStackTrace();
         	}
-        	
-        	/*HttpClient hc = new DefaultHttpClient();
-			HttpPost post = new HttpPost(_serverUrl);
-
-			StringEntity se = new StringEntity(content,HTTP.UTF_8);
-			se.setContentType("text/xml");
-
-			post.setHeader("Content-Type","application/xml;charset=UTF-8");
-			post.setEntity(se);
-
-			HttpResponse rp = hc.execute(post);*/
 			return null;
         }
 
-        protected void onProgressUpdate(Integer... progress) {
-            
-        }
-
+        @Override
         protected void onPostExecute(String result) {
-            // TODO
+        	mLoginDialog.dismiss();
+        	
+            if(result != null) {
+            	// TODO parse json and set logged flag
+            } else {
+            	Toast.makeText(getApplicationContext(), getString(R.string.login_failed), 
+            			Toast.LENGTH_LONG).show();
+            }
         }
     }
 }
