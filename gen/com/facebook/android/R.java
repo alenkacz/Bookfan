@@ -21,26 +21,28 @@ public final class R {
         public static final int ic_launcher=0x7f020004;
     }
     public static final class id {
-        public static final int book_detail_add_btn=0x7f070008;
-        public static final int book_detail_add_cancel_v=0x7f070007;
-        public static final int book_detail_author=0x7f070002;
-        public static final int book_detail_cancel_btn=0x7f070009;
-        public static final int book_detail_image_iv=0x7f070000;
-        public static final int book_detail_isbn=0x7f070003;
-        public static final int book_detail_more_btn=0x7f07000b;
-        public static final int book_detail_more_v=0x7f07000a;
-        public static final int book_detail_name=0x7f070001;
-        public static final int book_detail_shelf_sp=0x7f070006;
-        public static final int book_detail_shelf_tv=0x7f070005;
-        public static final int book_detail_shelf_v=0x7f070004;
-        public static final int book_item_iv=0x7f070012;
-        public static final int book_item_tv=0x7f070013;
-        public static final int books_add_btn=0x7f070010;
-        public static final int books_list_lv=0x7f070011;
-        public static final int login_btn=0x7f07000e;
-        public static final int login_email=0x7f07000c;
-        public static final int login_fb_btn=0x7f07000f;
-        public static final int login_password=0x7f07000d;
+        public static final int book_detail_add_btn=0x7f07000a;
+        public static final int book_detail_add_cancel_v=0x7f070009;
+        public static final int book_detail_author=0x7f070004;
+        public static final int book_detail_cancel_btn=0x7f07000b;
+        public static final int book_detail_content_layout=0x7f070001;
+        public static final int book_detail_image_iv=0x7f070002;
+        public static final int book_detail_isbn=0x7f070005;
+        public static final int book_detail_loading=0x7f070000;
+        public static final int book_detail_more_btn=0x7f07000d;
+        public static final int book_detail_more_v=0x7f07000c;
+        public static final int book_detail_name=0x7f070003;
+        public static final int book_detail_shelf_sp=0x7f070008;
+        public static final int book_detail_shelf_tv=0x7f070007;
+        public static final int book_detail_shelf_v=0x7f070006;
+        public static final int book_item_iv=0x7f070014;
+        public static final int book_item_tv=0x7f070015;
+        public static final int books_add_btn=0x7f070012;
+        public static final int books_list_lv=0x7f070013;
+        public static final int login_btn=0x7f070010;
+        public static final int login_email=0x7f07000e;
+        public static final int login_fb_btn=0x7f070011;
+        public static final int login_password=0x7f07000f;
     }
     public static final class layout {
         public static final int activity_book_detail=0x7f030000;
@@ -50,17 +52,20 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f040001;
-        public static final int book_author=0x7f040010;
-        public static final int book_detail_add_btn=0x7f04000c;
+        public static final int book_author=0x7f040013;
+        public static final int book_detail_add_btn=0x7f04000e;
         /**  BOOKS DETAIL  
          */
-        public static final int book_detail_add_label=0x7f04000b;
-        public static final int book_detail_cancel_btn=0x7f04000d;
-        public static final int book_detail_more_btn=0x7f04000e;
-        public static final int book_isbn=0x7f040011;
+        public static final int book_detail_add_label=0x7f04000d;
+        public static final int book_detail_cancel_btn=0x7f04000f;
+        public static final int book_detail_loading_tv=0x7f040011;
+        public static final int book_detail_more_btn=0x7f040010;
+        public static final int book_isbn=0x7f040014;
         /**  TEMPORARY  
          */
-        public static final int book_name=0x7f04000f;
+        public static final int book_name=0x7f040012;
+        public static final int book_not_found=0x7f04000c;
+        public static final int book_search_pending=0x7f04000b;
         public static final int hello=0x7f040000;
         /**  BOOKS LIST  
          */

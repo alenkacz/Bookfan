@@ -1,6 +1,7 @@
 package cz.alenkacz.bookfan.activity;
 
 import java.io.InputStream;
+import java.net.URLDecoder;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -179,18 +180,33 @@ public class LoginActivity extends Activity {
             if(result != null) {
             	LoggedUserContainer user = new Gson().fromJson(result, LoggedUserContainer.class);
             	
-            	SharedPreferences.Editor editor = mPrefs.edit();
-                editor.putString(Constants.PREFS_LOGIN_TOKEN, user.token);
-                editor.putString(Constants.PREFS_LOGIN_USERNAME, user.userData.fullname);
-                editor.putString(Constants.PREFS_LOGIN_USERID, user.userData.userId);
-                editor.commit();
-                
-                final Intent i = new Intent(getApplicationContext(), MainListActivity.class);
-	        	startActivity(i);
+            	if(user.getErrormsg() == null || user.getErrormsg().length() == 0) {
+	            	SharedPreferences.Editor editor = mPrefs.edit();
+	                editor.putString(Constants.PREFS_LOGIN_TOKEN, user.token);
+	                editor.putString(Constants.PREFS_LOGIN_USERNAME, user.userData.fullname);
+	                editor.putString(Constants.PREFS_LOGIN_USERID, user.userData.userId);
+	                editor.commit();
+	                
+	                final Intent i = new Intent(getApplicationContext(), MainListActivity.class);
+		        	startActivity(i);
+            	} else {
+            		loginFailed(user.getErrormsg());
+            	}
             } else {
             	Toast.makeText(getApplicationContext(), getString(R.string.login_failed), 
             			Toast.LENGTH_LONG).show();
             }
+        }
+        
+        private void loginFailed(String msg) {
+        	StringBuilder sb = new StringBuilder(getString(R.string.login_failed));
+        	
+        	if(msg != null) {
+        		sb.append(" MSG:");
+        		sb.append(msg);
+        	}
+        	
+        	Toast.makeText(getApplicationContext(), sb.toString(), Toast.LENGTH_LONG).show();
         }
     }
 }

@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.cookie.BasicClientCookie;
+
 import cz.alenkacz.bookfan.dto.UserLogin;
 
 public class Utils {
@@ -14,6 +17,13 @@ public class Utils {
 		sb.append(user.email);
 		sb.append("&password=");
 		sb.append(user.password);
+		
+		return sb.toString();
+	}
+	
+	public static String getBookFindUrl(String isbn) {
+		StringBuilder sb = new StringBuilder(Constants.BACKEND_BOOK_FIND_URL);
+		sb.append(isbn);
 		
 		return sb.toString();
 	}
@@ -50,4 +60,18 @@ public class Utils {
 	    } 
 	    return buf.toString();
 	} 
+	
+	public static DefaultHttpClient getDefaultHttpClientWithCookie(String token) {
+		DefaultHttpClient client = new DefaultHttpClient();
+
+		if (token != null && !token.equals("")) {
+			BasicClientCookie c = new BasicClientCookie(Constants.COOKIE_NAME, token);
+			c.setPath("/");
+			c.setDomain(Constants.COOKIE_DOMAIN);
+			client.getCookieStore().addCookie(c);
+		}
+
+		return client;
+    }
+
 }

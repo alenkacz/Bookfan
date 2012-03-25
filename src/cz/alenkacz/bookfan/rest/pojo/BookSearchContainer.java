@@ -1,10 +1,11 @@
 package cz.alenkacz.bookfan.rest.pojo;
 
 import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.List;
 
-public class LoggedUserContainer {
-	public LoggedUser userData;
-	public String token;
+public class BookSearchContainer {
+	public Book results;
 	private String errormsg;
 	
 	public String getErrormsg() {
@@ -12,6 +13,6 @@ public class LoggedUserContainer {
 	}
 	
 	public void setErrormsg(String error) {
-		errormsg = URLDecoder.decode(error);
+		this.errormsg = URLDecoder.decode(error);
 	}
 }

@@ -19,11 +19,16 @@
     <!-- BOOKS LIST  -->
 	<string name="list_no_books">Žádné knihy, přidej první</string>
 	
+    <string name="book_search_pending">Hledám tvoji knížku v databázi Bookfanu...</string>
+    <string name="book_not_found">Tuto knihu jsme v databázi Bookfanu bohužel nenašli...</string>
+	
     <!-- BOOKS DETAIL  -->
     <string name="book_detail_add_label">Přidat do</string>
     <string name="book_detail_add_btn">Vložit</string>
     <string name="book_detail_cancel_btn">Zrušit</string>
     <string name="book_detail_more_btn">Více informací</string>
+    
+    <string name="book_detail_loading_tv">Hledám...</string>
 	
     <!-- TEMPORARY  -->
     <string name="book_name">Název knihy</string>

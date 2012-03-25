@@ -1,18 +1,33 @@
 package cz.alenkacz.bookfan.activity;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import com.google.gson.Gson;
 
 import cz.alenkacz.bookfan.R;
 import cz.alenkacz.bookfan.R.layout;
 import cz.alenkacz.bookfan.dto.Book;
+import cz.alenkacz.bookfan.dto.UserLogin;
+import cz.alenkacz.bookfan.rest.pojo.LoggedUserContainer;
+import cz.alenkacz.bookfan.tools.Constants;
+import cz.alenkacz.bookfan.tools.Utils;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainListActivity extends Activity {
 	
@@ -22,8 +37,7 @@ public class MainListActivity extends Activity {
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		
+		super.onCreate(savedInstanceState);		
 		setContentView(R.layout.activity_main_list);
 		
 		initTempList();
@@ -60,8 +74,10 @@ public class MainListActivity extends Activity {
 	    if (requestCode == 0) {
 	        if (resultCode == RESULT_OK) {
 	            String contents = intent.getStringExtra("SCAN_RESULT");
-	            String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
-	            // Handle successful scan
+	            
+	            Intent i = new Intent(getApplicationContext(), BookDetailActivity.class);
+		        i.putExtra(Constants.EXTRA_ISBN, contents);
+		        startActivity(i);
 	        } else if (resultCode == RESULT_CANCELED) {
 	            // Handle cancel
 	        }
