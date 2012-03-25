@@ -25,6 +25,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -55,6 +57,17 @@ public class MainListActivity extends Activity {
 	private void setupViews() {
 		mBooksList = (ListView) findViewById(R.id.books_list_lv);
 		mBooksList.setAdapter(new BooksAdapter(this, R.layout.part_book_item, mBooks));
+		
+		mBooksList.setOnItemClickListener(new OnItemClickListener(){
+
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO put some actual code here
+				Intent i = new Intent(getApplicationContext(), BookDetailActivity.class);
+				startActivity(i);
+			}
+			
+		});
 		
 		mAddButton = (Button) findViewById(R.id.books_add_btn);
 		mAddButton.setOnClickListener(new OnClickListener(){

@@ -48,17 +48,19 @@ public class BookDetailActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_detail);
         
-        mSearchingDialog = ProgressDialog.show(BookDetailActivity.this, "", 
-    			getString(R.string.book_search_pending), true);
-        
         mPrefs = getPreferences(MODE_PRIVATE);
         String isbn = getIntent().getStringExtra(Constants.EXTRA_ISBN);
         
         if(isbn != null) {
+        	mSearchingDialog = ProgressDialog.show(BookDetailActivity.this, "", 
+        			getString(R.string.book_search_pending), true);
+        	
         	setupViews();
             new BookFindAsyncTask().execute(isbn);
         } else {
-        	// empty view
+        	// TODO empty view
+        	setupViews();
+        	setupMockupView();
         }
 	}
 	
@@ -104,7 +106,12 @@ public class BookDetailActivity extends Activity {
 		});
 	}
 	
-	public void fillBookDetail(BookSearchContainer bookContainer) {
+	private void setupMockupView() {
+		mContentLayout.setVisibility(View.VISIBLE);
+		mLoadingTv.setVisibility(View.GONE);
+	}
+	
+	private void fillBookDetail(BookSearchContainer bookContainer) {
 		mContentLayout.setVisibility(View.VISIBLE);
 		mLoadingTv.setVisibility(View.GONE);
 		
