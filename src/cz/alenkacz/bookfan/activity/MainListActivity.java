@@ -12,7 +12,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import com.google.gson.Gson;
 
 import cz.alenkacz.bookfan.R;
-import cz.alenkacz.bookfan.R.layout;
 import cz.alenkacz.bookfan.dto.Book;
 import cz.alenkacz.bookfan.dto.UserLogin;
 import cz.alenkacz.bookfan.rest.pojo.LoggedUserContainer;

@@ -10,6 +10,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import com.actionbarsherlock.app.SherlockActivity;
 import com.facebook.android.Facebook.DialogListener;
 import com.facebook.android.*;
 import com.google.gson.Gson;
@@ -32,7 +33,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends SherlockActivity {
 	private static final String APP_ID = "251474701601587";
 	private Facebook mFacebook;
 	private SharedPreferences mPrefs;
