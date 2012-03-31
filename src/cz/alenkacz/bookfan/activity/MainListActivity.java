@@ -9,10 +9,10 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import com.actionbarsherlock.view.MenuItem;
 import com.google.gson.Gson;
 
 import cz.alenkacz.bookfan.R;
-import cz.alenkacz.bookfan.R.layout;
 import cz.alenkacz.bookfan.dto.Book;
 import cz.alenkacz.bookfan.dto.UserLogin;
 import cz.alenkacz.bookfan.rest.pojo.LoggedUserContainer;
@@ -31,7 +31,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class MainListActivity extends Activity {
+public class MainListActivity extends BaseActivity {
 	
 	private ListView mBooksList;
 	private Button mAddButton;
@@ -54,6 +54,17 @@ public class MainListActivity extends Activity {
 		mBooks.add(new Book("Kniha 3"));
 	}
 	
+	 @Override
+	    public boolean onOptionsItemSelected(MenuItem item) {
+	        switch (item.getItemId()) {
+	            case R.id.menu_add:
+	            	initScan();
+	            	return true;
+	            default:
+	                return super.onOptionsItemSelected(item);
+	        }
+	    }
+	
 	private void setupViews() {
 		mBooksList = (ListView) findViewById(R.id.books_list_lv);
 		mBooksList.setAdapter(new BooksAdapter(this, R.layout.part_book_item, mBooks));
@@ -75,12 +86,16 @@ public class MainListActivity extends Activity {
 			public void onClick(View arg0) {
 				//Intent intent = new Intent(getApplicationContext(), BookDetailActivity.class);
 				//startActivity(intent);
-				Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-		        intent.putExtra("SCAN_MODE", "EAN_13_MODE");
-		        startActivityForResult(intent, 0);
+				initScan();
 			}
 			
 		});
+	}
+	
+	private void initScan() {
+		Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+        intent.putExtra("SCAN_MODE", "EAN_13_MODE");
+        startActivityForResult(intent, 0);
 	}
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {

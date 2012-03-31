@@ -595,10 +595,12 @@ containing a value of this type.
         public static final int abs__bright_foreground_inverse_holo_dark=0x7f060006;
         public static final int abs__bright_foreground_inverse_holo_light=0x7f060007;
         public static final int abs__holo_blue_light=0x7f060008;
-        public static final int abs__primary_text_disable_only_holo_dark=0x7f060009;
-        public static final int abs__primary_text_disable_only_holo_light=0x7f06000a;
-        public static final int abs__primary_text_holo_dark=0x7f06000b;
-        public static final int abs__primary_text_holo_light=0x7f06000c;
+        public static final int abs__primary_text_disable_only_holo_dark=0x7f06000b;
+        public static final int abs__primary_text_disable_only_holo_light=0x7f06000c;
+        public static final int abs__primary_text_holo_dark=0x7f06000d;
+        public static final int abs__primary_text_holo_light=0x7f06000e;
+        public static final int actionbar_background_end=0x7f06000a;
+        public static final int actionbar_background_start=0x7f060009;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -794,11 +796,12 @@ containing a value of this type.
         public static final int abs__tab_unselected_focused_holo=0x7f02005a;
         public static final int abs__tab_unselected_holo=0x7f02005b;
         public static final int abs__tab_unselected_pressed_holo=0x7f02005c;
-        public static final int book=0x7f02005d;
-        public static final int close=0x7f02005e;
-        public static final int facebook_icon=0x7f02005f;
-        public static final int facebook_logo=0x7f020060;
-        public static final int ic_launcher=0x7f020061;
+        public static final int actionbar_background=0x7f02005d;
+        public static final int book=0x7f02005e;
+        public static final int close=0x7f02005f;
+        public static final int facebook_icon=0x7f020060;
+        public static final int facebook_logo=0x7f020061;
+        public static final int ic_launcher=0x7f020062;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f040022;
@@ -844,9 +847,10 @@ containing a value of this type.
         public static final int book_detail_shelf_sp=0x7f04002f;
         public static final int book_detail_shelf_tv=0x7f04002e;
         public static final int book_detail_shelf_v=0x7f04002d;
-        public static final int book_item_iv=0x7f04003a;
-        public static final int book_item_tv=0x7f04003b;
-        public static final int books_list_lv=0x7f040039;
+        public static final int book_item_iv=0x7f04003b;
+        public static final int book_item_tv=0x7f04003c;
+        public static final int books_add_btn=0x7f040039;
+        public static final int books_list_lv=0x7f04003a;
         public static final int disableHome=0x7f040009;
         public static final int homeAsUp=0x7f040006;
         public static final int listMode=0x7f040002;
@@ -854,6 +858,7 @@ containing a value of this type.
         public static final int login_email=0x7f040035;
         public static final int login_fb_btn=0x7f040038;
         public static final int login_password=0x7f040036;
+        public static final int menu_add=0x7f04003d;
         public static final int normal=0x7f040001;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
@@ -892,6 +897,9 @@ containing a value of this type.
         public static final int part_book_item=0x7f030017;
         public static final int sherlock_spinner_dropdown_item=0x7f030018;
         public static final int sherlock_spinner_item=0x7f030019;
+    }
+    public static final class menu {
+        public static final int actionbar=0x7f0c0000;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -953,14 +961,14 @@ containing a value of this type.
         public static final int login_heading=0x7f09000d;
         public static final int login_password=0x7f09000f;
         public static final int login_progress=0x7f090012;
+        public static final int menu_save=0x7f09001f;
     }
     public static final class style {
-        public static final int BookScreen=0x7f0a005a;
-        public static final int BookfanTheme=0x7f0a0058;
+        public static final int BookScreen=0x7f0a005b;
         public static final int DialogWindowTitle_Sherlock=0x7f0a0033;
         public static final int DialogWindowTitle_Sherlock_Light=0x7f0a0034;
-        public static final int Heading=0x7f0a005b;
-        public static final int LoginScreen=0x7f0a0059;
+        public static final int Heading=0x7f0a005c;
+        public static final int LoginScreen=0x7f0a005a;
         public static final int Sherlock___TextAppearance_Small=0x7f0a0047;
         public static final int Sherlock___Theme=0x7f0a004a;
         public static final int Sherlock___Theme_DarkActionBar=0x7f0a004c;
@@ -992,6 +1000,8 @@ containing a value of this type.
         public static final int TextAppearance_Sherlock_Widget_PopupMenu_Large=0x7f0a003f;
         public static final int TextAppearance_Sherlock_Widget_PopupMenu_Small=0x7f0a0041;
         public static final int TextAppearance_Sherlock_Widget_TextView_SpinnerItem=0x7f0a0043;
+        public static final int Theme_Bookfan=0x7f0a0058;
+        public static final int Theme_Bookfan_Actionbar=0x7f0a0059;
         public static final int Theme_Sherlock=0x7f0a004e;
         public static final int Theme_Sherlock_Dialog=0x7f0a0056;
         public static final int Theme_Sherlock_ForceOverflow=0x7f0a0053;

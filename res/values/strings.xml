@@ -34,6 +34,7 @@
     <string name="book_name">Název knihy</string>
     <string name="book_author">Autor knihy</string>
     <string name="book_isbn">ISBN</string>
+    <string name="menu_save">Ulozit</string>
     
     <string-array name="shelf_array">
         <item>Přečtené</item>
