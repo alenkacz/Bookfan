@@ -53,6 +53,8 @@ public class LoginActivity extends SherlockActivity {
         mPrefs = getPreferences(MODE_PRIVATE);
         mFacebook = new Facebook(APP_ID);
         
+        getSupportActionBar().show();
+        
         setupViews();
     }
     

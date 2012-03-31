@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
    
-   <style name="BookfanTheme" parent="android:Theme.Light">
-    <item name="android:windowNoTitle">true</item>
+   <style name="Theme.Bookfan" parent="style/Theme.Sherlock.Light">
+    <item name="actionBarStyle">@style/Theme.Bookfan.Actionbar</item>
   </style>
+  
+    <style name="Theme.Bookfan.Actionbar" parent="Widget.Sherlock.ActionBar">
+        <item name="background">#664c1e</item>
+        <item name="android:background">#664c1e</item>
+        <item name="android:backgroundStacked">#664c1e</item>
+        <item name="android:textColor">#0084dc</item>
+    </style>
     
     
     <style name="LoginScreen">
