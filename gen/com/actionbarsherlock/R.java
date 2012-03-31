@@ -858,6 +858,7 @@ containing a value of this type.
         public static final int login_email=0x7f040035;
         public static final int login_fb_btn=0x7f040038;
         public static final int login_password=0x7f040036;
+        public static final int menu_add=0x7f04003d;
         public static final int normal=0x7f040001;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
@@ -896,6 +897,9 @@ containing a value of this type.
         public static final int part_book_item=0x7f030017;
         public static final int sherlock_spinner_dropdown_item=0x7f030018;
         public static final int sherlock_spinner_item=0x7f030019;
+    }
+    public static final class menu {
+        public static final int actionbar=0x7f0c0000;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -957,6 +961,7 @@ containing a value of this type.
         public static final int login_heading=0x7f09000d;
         public static final int login_password=0x7f09000f;
         public static final int login_progress=0x7f090012;
+        public static final int menu_save=0x7f09001f;
     }
     public static final class style {
         public static final int BookScreen=0x7f0a005b;

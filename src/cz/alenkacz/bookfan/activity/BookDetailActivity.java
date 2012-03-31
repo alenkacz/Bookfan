@@ -26,7 +26,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class BookDetailActivity extends Activity {
+public class BookDetailActivity extends BaseActivity {
 	
 	private Spinner mShelfSp;
 	private Button mAddBtn;
