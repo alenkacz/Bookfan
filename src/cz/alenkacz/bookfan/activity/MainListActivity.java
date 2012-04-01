@@ -34,7 +34,6 @@ import android.widget.Toast;
 public class MainListActivity extends BaseActivity {
 	
 	private ListView mBooksList;
-	private Button mAddButton;
 	private List<Book> mBooks;
 	
 	@Override
@@ -76,17 +75,6 @@ public class MainListActivity extends BaseActivity {
 				// TODO put some actual code here
 				Intent i = new Intent(getApplicationContext(), BookDetailActivity.class);
 				startActivity(i);
-			}
-			
-		});
-		
-		mAddButton = (Button) findViewById(R.id.books_add_btn);
-		mAddButton.setOnClickListener(new OnClickListener(){
-
-			public void onClick(View arg0) {
-				//Intent intent = new Intent(getApplicationContext(), BookDetailActivity.class);
-				//startActivity(intent);
-				initScan();
 			}
 			
 		});

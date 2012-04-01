@@ -847,10 +847,9 @@ containing a value of this type.
         public static final int book_detail_shelf_sp=0x7f04002f;
         public static final int book_detail_shelf_tv=0x7f04002e;
         public static final int book_detail_shelf_v=0x7f04002d;
-        public static final int book_item_iv=0x7f04003b;
-        public static final int book_item_tv=0x7f04003c;
-        public static final int books_add_btn=0x7f040039;
-        public static final int books_list_lv=0x7f04003a;
+        public static final int book_item_iv=0x7f04003a;
+        public static final int book_item_tv=0x7f04003b;
+        public static final int books_list_lv=0x7f040039;
         public static final int disableHome=0x7f040009;
         public static final int homeAsUp=0x7f040006;
         public static final int listMode=0x7f040002;
@@ -858,7 +857,7 @@ containing a value of this type.
         public static final int login_email=0x7f040035;
         public static final int login_fb_btn=0x7f040038;
         public static final int login_password=0x7f040036;
-        public static final int menu_add=0x7f04003d;
+        public static final int menu_add=0x7f04003c;
         public static final int normal=0x7f040001;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;

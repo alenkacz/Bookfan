@@ -3,13 +3,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-
-    <Button
-        android:id="@+id/books_add_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Přidat" />
     
     <ListView
         android:id="@+id/books_list_lv"
