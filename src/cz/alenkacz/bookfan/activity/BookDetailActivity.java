@@ -16,7 +16,9 @@ import cz.alenkacz.bookfan.tools.Constants;
 import cz.alenkacz.bookfan.tools.Utils;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -54,6 +56,8 @@ public class BookDetailActivity extends BaseActivity {
 	private ImageLoader mImageLoader;
 	
 	private ProgressDialog mSearchingDialog;
+	
+	private Book mDownloadedBook;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -121,7 +125,13 @@ public class BookDetailActivity extends BaseActivity {
 		mMoreInfoBtn.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View v) {
-				// TODO open webpage
+				if(mDownloadedBook != null) {
+					if(mDownloadedBook.BOOK_URL != null) {
+						Intent i = new Intent("android.intent.action.VIEW", 
+								Uri.parse(mDownloadedBook.BOOK_URL));
+						startActivity(i);
+					}
+				}
 			}
 			
 		});
@@ -240,6 +250,7 @@ public class BookDetailActivity extends BaseActivity {
             	BookSearchContainer book = new Gson().fromJson(result, BookSearchContainer.class);
             	if((book.getErrormsg() == null || book.getErrormsg().length() == 0) &&
             			book.results != null) {
+            		mDownloadedBook = book.results;
             		fillBookDetail(book);
             	} else {
             		searchFailed();
