@@ -6,6 +6,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 
+import com.google.android.imageloader.ImageLoader;
 import com.google.gson.Gson;
 
 import cz.alenkacz.bookfan.R;
@@ -41,6 +42,7 @@ public class BookDetailActivity extends BaseActivity {
 	private TextView mAuthorTv;
 	private TextView mYearTv;
 	private TextView mIsbnTv;
+	private ImageView mBookImageIv;
 	
 	private ImageView mStars1Iv;
 	private ImageView mStars2Iv;
@@ -50,6 +52,8 @@ public class BookDetailActivity extends BaseActivity {
 	
 	private SharedPreferences mPrefs;
 	
+	private ImageLoader mImageLoader;
+	
 	private ProgressDialog mSearchingDialog;
 	
 	@Override
@@ -57,6 +61,7 @@ public class BookDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_detail);
         
+        mImageLoader = ImageLoader.get(this);
         mPrefs = getPreferences(MODE_PRIVATE);
         String isbn = getIntent().getStringExtra(Constants.EXTRA_ISBN);
         
@@ -85,6 +90,7 @@ public class BookDetailActivity extends BaseActivity {
 		mAuthorTv = (TextView) findViewById(R.id.book_detail_author);
 		mYearTv = (TextView) findViewById(R.id.book_detail_year);
 		mIsbnTv = (TextView) findViewById(R.id.book_detail_isbn);
+		mBookImageIv = (ImageView) findViewById(R.id.book_detail_image_iv);
 		
 		mStars1Iv = (ImageView) findViewById(R.id.book_detail_star_1_iv);
 		mStars2Iv = (ImageView) findViewById(R.id.book_detail_star_2_iv);
@@ -138,6 +144,9 @@ public class BookDetailActivity extends BaseActivity {
 		mAuthorTv.setText(book.AUTHOR_FULL_NAME);
 		mYearTv.setText(book.BOOK_YEAR);
 		mIsbnTv.setText(book.BOOK_ISBN);
+		
+		mImageLoader.bind(mBookImageIv, 
+				"http://img.pemic.cz/sortimg/009/8/5/0098555-23.jpg", null);
 		
 		fillStarsView(book.BOOK_STARS);
 	}
