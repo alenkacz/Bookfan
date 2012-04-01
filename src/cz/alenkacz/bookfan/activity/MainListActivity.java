@@ -87,7 +87,7 @@ public class MainListActivity extends BaseActivity {
         
 		// TODO re-enable scanning
 		Intent i = new Intent(getApplicationContext(), BookDetailActivity.class);
-        i.putExtra(Constants.EXTRA_ISBN, "9788074320125");
+        i.putExtra(Constants.EXTRA_ISBN, "9788025215333");
         startActivity(i);
 	}
 	

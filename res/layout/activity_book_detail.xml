@@ -53,16 +53,14 @@
 			        style="@style/Theme.Bookfan.Book.Author"
 			        android:text="@string/book_author" />  
 			        
+			    <include 
+			        layout="@layout/part_book_stars" />
+			    
 			    <TextView
 			        android:id="@+id/book_detail_isbn"
 			        android:layout_width="fill_parent"
 			        android:layout_height="wrap_content"
 			        android:text="@string/book_isbn" /> 
-			        
-			    <TextView
-			        android:id="@+id/book_detail_stars"
-			        android:layout_width="fill_parent"
-			        android:layout_height="wrap_content" /> 
 			        
 			    <TextView
 			        android:id="@+id/book_detail_year"

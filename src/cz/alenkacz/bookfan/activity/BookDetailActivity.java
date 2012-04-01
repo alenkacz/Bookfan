@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,9 +39,14 @@ public class BookDetailActivity extends BaseActivity {
 	
 	private TextView mNameTv;
 	private TextView mAuthorTv;
-	private TextView mStarsTv;
 	private TextView mYearTv;
 	private TextView mIsbnTv;
+	
+	private ImageView mStars1Iv;
+	private ImageView mStars2Iv;
+	private ImageView mStars3Iv;
+	private ImageView mStars4Iv;
+	private ImageView mStars5Iv;
 	
 	private SharedPreferences mPrefs;
 	
@@ -77,9 +83,14 @@ public class BookDetailActivity extends BaseActivity {
 		
 		mNameTv = (TextView) findViewById(R.id.book_detail_name);
 		mAuthorTv = (TextView) findViewById(R.id.book_detail_author);
-		mStarsTv = (TextView) findViewById(R.id.book_detail_stars);
 		mYearTv = (TextView) findViewById(R.id.book_detail_year);
 		mIsbnTv = (TextView) findViewById(R.id.book_detail_isbn);
+		
+		mStars1Iv = (ImageView) findViewById(R.id.book_detail_star_1_iv);
+		mStars2Iv = (ImageView) findViewById(R.id.book_detail_star_2_iv);
+		mStars3Iv = (ImageView) findViewById(R.id.book_detail_star_3_iv);
+		mStars4Iv = (ImageView) findViewById(R.id.book_detail_star_4_iv);
+		mStars5Iv = (ImageView) findViewById(R.id.book_detail_star_5_iv);
 		
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, 
 				R.array.shelf_array, android.R.layout.simple_spinner_item);
@@ -126,8 +137,58 @@ public class BookDetailActivity extends BaseActivity {
 		mNameTv.setText(book.BOOK_TITLE);
 		mAuthorTv.setText(book.AUTHOR_FULL_NAME);
 		mYearTv.setText(book.BOOK_YEAR);
-		mStarsTv.setText(book.BOOK_STARS);
 		mIsbnTv.setText(book.BOOK_ISBN);
+		
+		fillStarsView(book.BOOK_STARS);
+	}
+	
+	private void fillStarsView(String stars) {
+		try {
+			float rating = Integer.parseInt(stars);
+			if(rating <= 1) {
+				if(rating < 1) {
+					mStars1Iv.setImageResource(R.drawable.star_half);
+				} else {
+					mStars1Iv.setImageResource(R.drawable.star_full);
+				}
+			} else if(rating <= 2) {
+				mStars1Iv.setImageResource(R.drawable.star_full);
+				if(rating < 2) {
+					mStars2Iv.setImageResource(R.drawable.star_half);
+				} else {
+					mStars2Iv.setImageResource(R.drawable.star_full);
+				}	
+			} else if(rating <= 3) {
+				mStars1Iv.setImageResource(R.drawable.star_full);
+				mStars2Iv.setImageResource(R.drawable.star_full);
+				if(rating < 3) {
+					mStars3Iv.setImageResource(R.drawable.star_half);
+				} else {
+					mStars3Iv.setImageResource(R.drawable.star_full);
+				}	
+			} else if(rating <= 4) {
+				mStars1Iv.setImageResource(R.drawable.star_full);
+				mStars2Iv.setImageResource(R.drawable.star_full);
+				mStars3Iv.setImageResource(R.drawable.star_full);
+				if(rating < 4) {
+					mStars4Iv.setImageResource(R.drawable.star_half);
+				} else {
+					mStars4Iv.setImageResource(R.drawable.star_full);
+				}
+			} else {
+				mStars1Iv.setImageResource(R.drawable.star_full);
+				mStars2Iv.setImageResource(R.drawable.star_full);
+				mStars3Iv.setImageResource(R.drawable.star_full);
+				mStars4Iv.setImageResource(R.drawable.star_full);
+				if(rating < 5) {
+					mStars5Iv.setImageResource(R.drawable.star_half);
+				} else {
+					mStars5Iv.setImageResource(R.drawable.star_full);
+				}
+			}
+		} catch(NumberFormatException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private class BookFindAsyncTask extends AsyncTask<String, Void, String> {
