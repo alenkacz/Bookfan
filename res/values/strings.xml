@@ -29,6 +29,7 @@
     <string name="book_detail_more_btn">Více informací</string>
     
     <string name="book_detail_loading_tv">Hledám...</string>
+    <string name="book_detail_not_found_tv">Kniha nenalezena</string>
 	
     <!-- TEMPORARY  -->
     <string name="book_name">Název knihy</string>

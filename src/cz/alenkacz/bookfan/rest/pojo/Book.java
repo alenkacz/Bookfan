@@ -6,7 +6,7 @@ public class Book {
 	public String BOOK_YEAR;
 	public String BOOK_EAN;
 	public String BOOK_TITLE;
-	public String BOOK_COVER_URL;
+	public String BOOK_COVER;
 	public String BOOK_URL;
 	public String BOOK_RATING;
 	public String BOOK_STARS;

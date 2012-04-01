@@ -35,8 +35,7 @@ public class BookDetailActivity extends BaseActivity {
 	private Button mCancelBtn;
 	private Button mMoreInfoBtn;
 	
-	private View mContentLayout;
-	private TextView mLoadingTv;
+	private View mActiveLayout;
 	
 	private TextView mNameTv;
 	private TextView mAuthorTv;
@@ -79,8 +78,7 @@ public class BookDetailActivity extends BaseActivity {
 	}
 	
 	private void setupViews() {
-		mContentLayout = (View) findViewById(R.id.book_detail_content_layout);
-		mLoadingTv = (TextView) findViewById(R.id.book_detail_loading);
+		mActiveLayout = (View) findViewById(R.id.book_detail_active_layout);
 		mShelfSp = (Spinner) findViewById(R.id.book_detail_shelf_sp);
 		mAddBtn = (Button) findViewById(R.id.book_detail_add_btn);
 		mCancelBtn = (Button) findViewById(R.id.book_detail_cancel_btn);
@@ -130,13 +128,13 @@ public class BookDetailActivity extends BaseActivity {
 	}
 	
 	private void setupMockupView() {
-		mContentLayout.setVisibility(View.VISIBLE);
-		mLoadingTv.setVisibility(View.GONE);
+		mActiveLayout.setVisibility(View.VISIBLE);
+		//mLoadingTv.setVisibility(View.GONE);
 	}
 	
 	private void fillBookDetail(BookSearchContainer bookContainer) {
-		mContentLayout.setVisibility(View.VISIBLE);
-		mLoadingTv.setVisibility(View.GONE);
+		mActiveLayout.setVisibility(View.VISIBLE);
+		//mLoadingTv.setVisibility(View.GONE);
 		
 		Book book = bookContainer.results;
 		
@@ -145,8 +143,9 @@ public class BookDetailActivity extends BaseActivity {
 		mYearTv.setText(book.BOOK_YEAR);
 		mIsbnTv.setText(book.BOOK_ISBN);
 		
-		mImageLoader.bind(mBookImageIv, 
-				"http://img.pemic.cz/sortimg/009/8/5/0098555-23.jpg", null);
+		if(book.BOOK_COVER != null) {
+			mImageLoader.bind(mBookImageIv, book.BOOK_COVER, null);
+		}
 		
 		fillStarsView(book.BOOK_STARS);
 	}
@@ -154,6 +153,11 @@ public class BookDetailActivity extends BaseActivity {
 	private void fillStarsView(String stars) {
 		try {
 			float rating = Integer.parseInt(stars);
+			
+			if(rating <= 0) {
+				return;
+			}
+			
 			if(rating <= 1) {
 				if(rating < 1) {
 					mStars1Iv.setImageResource(R.drawable.star_half);

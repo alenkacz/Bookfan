@@ -838,6 +838,7 @@ containing a value of this type.
         public static final int abs__title=0x7f04001b;
         public static final int abs__titleDivider=0x7f04001c;
         public static final int abs__up=0x7f04000b;
+        public static final int book_detail_active_layout=0x7f040027;
         public static final int book_detail_add_btn=0x7f040033;
         public static final int book_detail_add_cancel_v=0x7f040032;
         public static final int book_detail_author=0x7f04002c;
@@ -846,7 +847,6 @@ containing a value of this type.
         public static final int book_detail_image_iv=0x7f040029;
         public static final int book_detail_info_v=0x7f04002a;
         public static final int book_detail_isbn=0x7f04002d;
-        public static final int book_detail_loading=0x7f040027;
         public static final int book_detail_more_btn=0x7f040036;
         public static final int book_detail_more_v=0x7f040035;
         public static final int book_detail_name=0x7f04002b;
@@ -945,7 +945,7 @@ containing a value of this type.
          */
         public static final int abs__shareactionprovider_share_with_application=0x7f090009;
         public static final int app_name=0x7f09000b;
-        public static final int book_author=0x7f09001d;
+        public static final int book_author=0x7f09001e;
         public static final int book_detail_add_btn=0x7f090018;
         /**  BOOKS DETAIL  
          */
@@ -953,10 +953,11 @@ containing a value of this type.
         public static final int book_detail_cancel_btn=0x7f090019;
         public static final int book_detail_loading_tv=0x7f09001b;
         public static final int book_detail_more_btn=0x7f09001a;
-        public static final int book_isbn=0x7f09001e;
+        public static final int book_detail_not_found_tv=0x7f09001c;
+        public static final int book_isbn=0x7f09001f;
         /**  TEMPORARY  
          */
-        public static final int book_name=0x7f09001c;
+        public static final int book_name=0x7f09001d;
         public static final int book_not_found=0x7f090016;
         public static final int book_search_pending=0x7f090015;
         public static final int hello=0x7f09000a;
@@ -973,7 +974,7 @@ containing a value of this type.
         public static final int login_heading=0x7f09000d;
         public static final int login_password=0x7f09000f;
         public static final int login_progress=0x7f090012;
-        public static final int menu_save=0x7f09001f;
+        public static final int menu_save=0x7f090020;
     }
     public static final class style {
         public static final int BookScreen=0x7f0a005e;
