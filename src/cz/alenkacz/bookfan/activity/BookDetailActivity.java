@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 
 import cz.alenkacz.bookfan.R;
 import cz.alenkacz.bookfan.rest.pojo.Book;
+import cz.alenkacz.bookfan.rest.pojo.BookAddResultContainer;
 import cz.alenkacz.bookfan.rest.pojo.BookSearchContainer;
 import cz.alenkacz.bookfan.tools.Constants;
 import cz.alenkacz.bookfan.tools.Utils;
@@ -56,6 +57,7 @@ public class BookDetailActivity extends BaseActivity {
 	private ImageLoader mImageLoader;
 	
 	private ProgressDialog mSearchingDialog;
+	private ProgressDialog mBookAddDialog;
 	
 	private Book mDownloadedBook;
 	
@@ -65,7 +67,7 @@ public class BookDetailActivity extends BaseActivity {
         setContentView(R.layout.activity_book_detail);
         
         mImageLoader = ImageLoader.get(this);
-        mPrefs = getPreferences(MODE_PRIVATE);
+        mPrefs = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
         String isbn = getIntent().getStringExtra(Constants.EXTRA_ISBN);
         
         if(isbn != null) {
@@ -108,8 +110,9 @@ public class BookDetailActivity extends BaseActivity {
 		mAddBtn.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View arg0) {
-				// TODO add book
-				finish();
+				mBookAddDialog = ProgressDialog.show(BookDetailActivity.this, "", 
+	        			getString(R.string.book_add_pending), true);
+				new BookAddAsyncTask().execute(mDownloadedBook.BOOK_ID);
 			}
 			
 		});
@@ -212,6 +215,68 @@ public class BookDetailActivity extends BaseActivity {
 		} catch(NumberFormatException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private class BookAddAsyncTask extends AsyncTask<String, Void, String> {
+
+		@Override
+		protected String doInBackground(String... bookIds) {
+			try {
+				String bookId;
+	        	if(bookIds.length > 0) {
+	        		bookId = bookIds[0];
+	        	} else {
+	        		return null;
+	        	}
+	        	
+	        	String token = mPrefs.getString(Constants.PREFS_LOGIN_TOKEN, "");
+	        	
+	        	HttpClient hc = Utils.getDefaultHttpClientWithCookie(
+	        			mPrefs.getString(Constants.PREFS_LOGIN_TOKEN, ""));
+				HttpGet get = new HttpGet(Utils.getBookAddUrl(bookId, token));
+	
+				HttpResponse resp = hc.execute(get);
+				int status = resp.getStatusLine().getStatusCode();
+				if(status == 200) {
+					InputStream isContent = resp.getEntity().getContent();
+					
+					return Utils.inputStreamToString(isContent);
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+        	
+			return null;
+		}
+		
+		@Override
+        protected void onPostExecute(String result) {
+			mBookAddDialog.dismiss();
+			
+            if(result != null) {
+            	BookAddResultContainer addResult = new Gson().fromJson(result, 
+            			BookAddResultContainer.class);
+            	
+            	if(addResult.saved == 0) {
+            		addFailed();
+            	} else {
+            		addSuccess();
+            	}
+            } else {
+            	addFailed();
+            }
+        }
+		
+		private void addFailed() {
+        	Toast.makeText(getApplicationContext(), getString(R.string.book_add_fail), 
+        			Toast.LENGTH_LONG).show();
+        }
+		
+		private void addSuccess() {
+        	Toast.makeText(getApplicationContext(), getString(R.string.book_add_success), 
+        			Toast.LENGTH_LONG).show();
+        }
+		
 	}
 	
 	private class BookFindAsyncTask extends AsyncTask<String, Void, String> {

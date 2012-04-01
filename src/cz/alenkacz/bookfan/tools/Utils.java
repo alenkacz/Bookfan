@@ -21,6 +21,15 @@ public class Utils {
 		return sb.toString();
 	}
 	
+	public static String getBookAddUrl(String bookId, String token) {
+		StringBuilder sb = new StringBuilder(Constants.BACKEND_BOOK_ADD_URL);
+		sb.append(bookId);
+		sb.append("/");
+		sb.append(token);
+		
+		return sb.toString();
+	}
+	
 	public static String getBookFindUrl(String isbn) {
 		StringBuilder sb = new StringBuilder(Constants.BACKEND_BOOK_FIND_URL);
 		sb.append(isbn);

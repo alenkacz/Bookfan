@@ -30,7 +30,11 @@
     
     <string name="book_detail_loading_tv">Hledám...</string>
     <string name="book_detail_not_found_tv">Kniha nenalezena</string>
-	
+    <string name="book_detail_add_failed">Přidání chyby se nezdařilo. Zkuste to prosím později a zkontrolujte připojení k internetu.</string>
+	<string name="book_add_pending">Přidávám knihu do knihovny...</string>
+	<string name="book_add_success">Kniha byla přidána do vaší knihovny</string>
+	<string name="book_add_success">Přidání knihy se bohužel nepovedlo. Zkuste to prosím později a zkontrolujte své připojení k internetu</string>
+        
     <!-- TEMPORARY  -->
     <string name="book_name">Název knihy</string>
     <string name="book_author">Autor knihy</string>

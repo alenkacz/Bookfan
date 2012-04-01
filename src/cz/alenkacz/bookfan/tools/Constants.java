@@ -3,6 +3,7 @@ package cz.alenkacz.bookfan.tools;
 public class Constants {
 	public static final String LOGTAG = "Bookfan";
 	
+	public static final String PREFS = "BookfanPreferences";
 	public static final String PREFS_FB_TOKEN = "fbAccessToken";
 	public static final String PREFS_FB_TOKEN_EXPIRES = "fbTokenExpires";
 	
@@ -16,5 +17,6 @@ public class Constants {
 	public static final String COOKIE_DOMAIN = "http://www.bookfan.eu";
 	
 	public static final String BACKEND_LOGIN_URL = "http://www.bookfan.eu/api/2/login?";
+	public static final String BACKEND_BOOK_ADD_URL = "http://www.bookfan.eu/api/2/library/add/";
 	public static final String BACKEND_BOOK_FIND_URL = "http://www.bookfan.eu/api/2/search/book?q=";
 }

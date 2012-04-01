@@ -53,7 +53,7 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         
-        mPrefs = getPreferences(MODE_PRIVATE);
+        mPrefs = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
         mFacebook = new Facebook(APP_ID);
         
         getSupportActionBar().show();
