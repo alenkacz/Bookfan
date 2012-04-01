@@ -30,36 +30,53 @@
 		        android:src="@drawable/book"
 		        />
 		    
-		    <TextView
-		        android:id="@+id/book_detail_name"
+		    <LinearLayout
+		        android:id="@+id/book_detail_info_v"
 		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        android:text="@string/book_name"
-		        android:layout_toRightOf="@id/book_detail_image_iv" />  
-		          
-		    <TextView
-		        android:id="@+id/book_detail_author"
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        android:text="@string/book_author"
+		        android:layout_height="wrap_content" 
+		        android:orientation="vertical"
+		        style="@style/Theme.Bookfan.Book"
 		        android:layout_toRightOf="@id/book_detail_image_iv"
-		        android:layout_below="@id/book_detail_name"/>  
+		        >
+		    
+			    <TextView
+			        android:id="@+id/book_detail_name"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        style="@style/Theme.Bookfan.Book.Heading"
+			        android:text="@string/book_name" />  
+			          
+			    <TextView
+			        android:id="@+id/book_detail_author"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        style="@style/Theme.Bookfan.Book.Author"
+			        android:text="@string/book_author" />  
+			        
+			    <TextView
+			        android:id="@+id/book_detail_isbn"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:text="@string/book_isbn" /> 
+			        
+			    <TextView
+			        android:id="@+id/book_detail_stars"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content" /> 
+			        
+			    <TextView
+			        android:id="@+id/book_detail_year"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content" /> 
 		        
-		    <TextView
-		        android:id="@+id/book_detail_isbn"
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        android:text="@string/book_isbn"
-		        android:layout_toRightOf="@id/book_detail_image_iv"
-		        android:layout_below="@id/book_detail_author"/> 
-		        
+		   </LinearLayout>
 		   <LinearLayout
 		        android:id="@+id/book_detail_shelf_v"
 		        android:layout_width="fill_parent"
 		        android:layout_height="wrap_content" 
 		        android:orientation="horizontal"
 		        android:gravity="center"
-		        android:layout_below="@id/book_detail_image_iv"
+		        android:layout_below="@id/book_detail_info_v"
 		        >
 		        
 			    <TextView

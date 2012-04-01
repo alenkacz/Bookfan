@@ -81,9 +81,14 @@ public class MainListActivity extends BaseActivity {
 	}
 	
 	private void initScan() {
-		Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+		/*Intent intent = new Intent("com.google.zxing.client.android.SCAN");
         intent.putExtra("SCAN_MODE", "EAN_13_MODE");
-        startActivityForResult(intent, 0);
+        startActivityForResult(intent, 0);*/
+        
+		// TODO re-enable scanning
+		Intent i = new Intent(getApplicationContext(), BookDetailActivity.class);
+        i.putExtra(Constants.EXTRA_ISBN, "9788074320125");
+        startActivity(i);
 	}
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {

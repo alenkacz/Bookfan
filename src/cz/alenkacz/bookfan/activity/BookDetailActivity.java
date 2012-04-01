@@ -38,6 +38,9 @@ public class BookDetailActivity extends BaseActivity {
 	
 	private TextView mNameTv;
 	private TextView mAuthorTv;
+	private TextView mStarsTv;
+	private TextView mYearTv;
+	private TextView mIsbnTv;
 	
 	private SharedPreferences mPrefs;
 	
@@ -74,6 +77,9 @@ public class BookDetailActivity extends BaseActivity {
 		
 		mNameTv = (TextView) findViewById(R.id.book_detail_name);
 		mAuthorTv = (TextView) findViewById(R.id.book_detail_author);
+		mStarsTv = (TextView) findViewById(R.id.book_detail_stars);
+		mYearTv = (TextView) findViewById(R.id.book_detail_year);
+		mIsbnTv = (TextView) findViewById(R.id.book_detail_isbn);
 		
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, 
 				R.array.shelf_array, android.R.layout.simple_spinner_item);
@@ -119,6 +125,9 @@ public class BookDetailActivity extends BaseActivity {
 		
 		mNameTv.setText(book.BOOK_TITLE);
 		mAuthorTv.setText(book.AUTHOR_FULL_NAME);
+		mYearTv.setText(book.BOOK_YEAR);
+		mStarsTv.setText(book.BOOK_STARS);
+		mIsbnTv.setText(book.BOOK_ISBN);
 	}
 	
 	private class BookFindAsyncTask extends AsyncTask<String, Void, String> {
