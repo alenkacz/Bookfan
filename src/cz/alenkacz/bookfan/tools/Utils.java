@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.cookie.BasicClientCookie;
@@ -17,6 +20,14 @@ public class Utils {
 		sb.append(user.email);
 		sb.append("&password=");
 		sb.append(user.password);
+		
+		return sb.toString();
+	}
+	
+	public static String getFBLoginUrl(String token, String salt) {
+		StringBuilder sb = new StringBuilder(Constants.BACKEND_LOGIN_URL);
+		sb.append("fbuid=");
+		sb.append(getSaltedHash(token, salt));
 		
 		return sb.toString();
 	}
@@ -52,6 +63,21 @@ public class Utils {
 		}
 		
 		return null;
+	}
+	
+	private static String getSaltedHash(String item, String salt) {
+		String toHash = item + salt;
+		try {
+			MessageDigest md = MessageDigest.getInstance("SHA1");
+			md.update(toHash.getBytes("UTF-8"));
+			
+			return Utils.convertByteHashToHex(md.digest());
+		} catch(NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch(UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return "";
 	}
 	
 	public static String convertByteHashToHex(byte[] data) { 

@@ -9,6 +9,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONObject;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -47,6 +48,7 @@ public class LoginActivity extends BaseActivity {
 	private EditText mPasswordEt;
 	
 	private ProgressDialog mLoginDialog;
+	private LoginActivity mActivity;
 		
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,7 +56,8 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
         
         mPrefs = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
-        mFacebook = new Facebook(APP_ID);
+        mActivity = this;
+        mFacebook = new Facebook(APP_ID); 
         
         getSupportActionBar().show();
         
@@ -83,8 +86,10 @@ public class LoginActivity extends BaseActivity {
     	mFacebookLoginBtn.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View v) {
-				final Intent i = new Intent(getApplicationContext(), MainListActivity.class);
-	        	startActivity(i);
+				mFacebook.authorize(mActivity, new LoginDialogListener());
+				
+				/*final Intent i = new Intent(getApplicationContext(), MainListActivity.class);
+	        	startActivity(i);*/
 			}
     		
     	});
@@ -147,6 +152,49 @@ public class LoginActivity extends BaseActivity {
 
 		public void onCancel() {
 			// intentionally nothing
+		}
+    	
+    }
+    
+    private class FacebookLoginAsyncTask extends AsyncTask<String, Void, String> {
+
+		@Override
+		protected String doInBackground(String... tokens) {
+			try {
+				String token;
+				if(tokens.length > 0) {
+					token = tokens[0];
+				} else {
+					return null;
+				}
+				
+				HttpClient hc = new DefaultHttpClient();
+				HttpGet get = new HttpGet(Utils.getFBLoginUrl(token, 
+						getString(R.string.config_salt)));
+	
+				HttpResponse resp = hc.execute(get);
+				int status = resp.getStatusLine().getStatusCode();
+				if(status == 200) {
+					InputStream isContent = resp.getEntity().getContent();
+					
+					String content = Utils.inputStreamToString(isContent);
+					return content;
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			return null;
+		}
+		
+		@Override
+        protected void onPostExecute(String result) {
+        	mLoginDialog.dismiss();
+        	
+            if(result != null) {
+            	String a = result;
+            	String b = a;
+            }
 		}
     	
     }
