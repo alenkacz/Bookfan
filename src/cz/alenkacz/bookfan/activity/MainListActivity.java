@@ -15,6 +15,8 @@ import com.google.gson.Gson;
 import cz.alenkacz.bookfan.R;
 import cz.alenkacz.bookfan.dto.Book;
 import cz.alenkacz.bookfan.dto.UserLogin;
+import cz.alenkacz.bookfan.rest.pojo.BookSearchContainer;
+import cz.alenkacz.bookfan.rest.pojo.BooksLibraryContainer;
 import cz.alenkacz.bookfan.rest.pojo.LoggedUserContainer;
 import cz.alenkacz.bookfan.tools.Constants;
 import cz.alenkacz.bookfan.tools.Utils;
@@ -33,24 +35,18 @@ import android.widget.Toast;
 
 public class MainListActivity extends BaseActivity {
 	
-	private ListView mBooksList;
-	private List<Book> mBooks;
+	private ListView mBooksList; 
+	private SharedPreferences mPrefs;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);		
 		setContentView(R.layout.activity_main_list);
 		
-		initTempList();
-		setupViews();
-	}
-	
-	private void initTempList() {
-		mBooks = new ArrayList<Book>();
+		mPrefs = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
 		
-		mBooks.add(new Book("Test knihy"));
-		mBooks.add(new Book("Kniha 2"));
-		mBooks.add(new Book("Kniha 3"));
+		setupViews();
+		new LibraryFetchAsyncTask().execute();
 	}
 	
 	 @Override
@@ -66,7 +62,6 @@ public class MainListActivity extends BaseActivity {
 	
 	private void setupViews() {
 		mBooksList = (ListView) findViewById(R.id.books_list_lv);
-		mBooksList.setAdapter(new BooksAdapter(this, R.layout.part_book_item, mBooks));
 		
 		mBooksList.setOnItemClickListener(new OnItemClickListener(){
 
@@ -104,4 +99,40 @@ public class MainListActivity extends BaseActivity {
 	        }
 	    }
 	}
+	
+	private class LibraryFetchAsyncTask extends AsyncTask<Void, Void, String> {
+    	
+        protected String doInBackground(Void... nothing) {
+        	try {
+        		String token = mPrefs.getString(Constants.PREFS_LOGIN_TOKEN, "");
+	        	HttpClient hc = Utils.getDefaultHttpClientWithCookie(
+	        			mPrefs.getString(Constants.PREFS_LOGIN_TOKEN, ""));
+				HttpGet get = new HttpGet(Utils.getLibraryGetUrl(token));
+	
+				HttpResponse resp = hc.execute(get);
+				int status = resp.getStatusLine().getStatusCode();
+				if(status == 200) {
+					InputStream isContent = resp.getEntity().getContent();
+					
+					return Utils.inputStreamToString(isContent);
+				}
+        	} catch(Exception e) {
+        		e.printStackTrace();
+        	}
+			return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+        	
+            if(result != null) {
+            	BooksLibraryContainer downloaded = new Gson()
+            		.fromJson(result, BooksLibraryContainer.class);
+            	mBooksList.setAdapter(new BooksAdapter(getApplicationContext(), 
+            			R.layout.part_book_item, downloaded.books));
+            } else {
+            	
+            }
+        }
+    }
 }

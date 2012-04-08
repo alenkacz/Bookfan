@@ -19,4 +19,5 @@ public class Constants {
 	public static final String BACKEND_LOGIN_URL = "http://www.bookfan.eu/api/2/login?";
 	public static final String BACKEND_BOOK_ADD_URL = "http://www.bookfan.eu/api/2/library/add/";
 	public static final String BACKEND_BOOK_FIND_URL = "http://www.bookfan.eu/api/2/search/book?q=";
+	public static final String BACKEND_LIBRARY_GET_URL = "http://www.bookfan.eu/api/2/fetch-library/";
 }

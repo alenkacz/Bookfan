@@ -5,6 +5,7 @@ import java.util.List;
 
 import cz.alenkacz.bookfan.R;
 import cz.alenkacz.bookfan.dto.Book;
+import cz.alenkacz.bookfan.rest.pojo.LibraryBook;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +13,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class BooksAdapter extends ArrayAdapter<Book> {
+public class BooksAdapter extends ArrayAdapter<LibraryBook> {
 	
-	private List<Book> mItems;
+	private List<LibraryBook> mItems;
 	
-	public BooksAdapter(Context context, int textViewResourceId, List<Book> items) {
+	public BooksAdapter(Context context, int textViewResourceId, List<LibraryBook> items) {
         super(context, textViewResourceId, items);
         this.mItems = items;
 	}
@@ -28,11 +29,11 @@ public class BooksAdapter extends ArrayAdapter<Book> {
                 LayoutInflater vi = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 v = vi.inflate(R.layout.part_book_item, null);
             }
-            Book book = mItems.get(position);
+            LibraryBook book = mItems.get(position);
             if (book != null) {
                     TextView tt = (TextView) v.findViewById(R.id.book_item_tv);
                     if (tt != null) {
-                          tt.setText(book.name);                            
+                          tt.setText(book.getBOOK_TITLE());                            
                     }
             }
             return v;

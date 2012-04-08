@@ -32,6 +32,13 @@ public class Utils {
 		return sb.toString();
 	}
 	
+	public static String getLibraryGetUrl(String token) {
+		StringBuilder sb = new StringBuilder(Constants.BACKEND_LIBRARY_GET_URL);
+		sb.append(token);
+		
+		return sb.toString();
+	}
+	
 	public static String getBookAddUrl(String bookId, String token) {
 		StringBuilder sb = new StringBuilder(Constants.BACKEND_BOOK_ADD_URL);
 		sb.append(bookId);
