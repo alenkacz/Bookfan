@@ -38,7 +38,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class LoginActivity extends BaseActivity {
-	private static final String APP_ID = "251474701601587";
 	private Facebook mFacebook;
 	private SharedPreferences mPrefs;
 	
@@ -57,7 +56,7 @@ public class LoginActivity extends BaseActivity {
         
         mPrefs = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
         mActivity = this;
-        mFacebook = new Facebook(APP_ID); 
+        mFacebook = new Facebook(getString(R.string.config_app_id)); 
         
         getSupportActionBar().show();
         
