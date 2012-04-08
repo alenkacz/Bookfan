@@ -838,6 +838,7 @@ containing a value of this type.
         public static final int abs__title=0x7f04001b;
         public static final int abs__titleDivider=0x7f04001c;
         public static final int abs__up=0x7f04000b;
+        public static final int book_author_tv=0x7f04003e;
         public static final int book_detail_active_layout=0x7f040027;
         public static final int book_detail_add_btn=0x7f040033;
         public static final int book_detail_add_cancel_v=0x7f040032;
@@ -853,14 +854,14 @@ containing a value of this type.
         public static final int book_detail_shelf_sp=0x7f040031;
         public static final int book_detail_shelf_tv=0x7f040030;
         public static final int book_detail_shelf_v=0x7f04002f;
-        public static final int book_detail_star_1_iv=0x7f04003e;
-        public static final int book_detail_star_2_iv=0x7f04003f;
-        public static final int book_detail_star_3_iv=0x7f040040;
-        public static final int book_detail_star_4_iv=0x7f040041;
-        public static final int book_detail_star_5_iv=0x7f040042;
+        public static final int book_detail_star_1_iv=0x7f04003f;
+        public static final int book_detail_star_2_iv=0x7f040040;
+        public static final int book_detail_star_3_iv=0x7f040041;
+        public static final int book_detail_star_4_iv=0x7f040042;
+        public static final int book_detail_star_5_iv=0x7f040043;
         public static final int book_detail_year=0x7f04002e;
         public static final int book_item_iv=0x7f04003c;
-        public static final int book_item_tv=0x7f04003d;
+        public static final int book_name_tv=0x7f04003d;
         public static final int books_list_lv=0x7f04003b;
         public static final int disableHome=0x7f040009;
         public static final int homeAsUp=0x7f040006;
@@ -869,7 +870,7 @@ containing a value of this type.
         public static final int login_email=0x7f040037;
         public static final int login_fb_btn=0x7f04003a;
         public static final int login_password=0x7f040038;
-        public static final int menu_add=0x7f040043;
+        public static final int menu_add=0x7f040044;
         public static final int normal=0x7f040001;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
