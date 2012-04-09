@@ -42,6 +42,8 @@ public class DatabaseHelper extends SQLiteOpenHelper  {
 			sql.append(" text,");
 			sql.append(Books.SERVER_UID);
 			sql.append(" integer,");
+			sql.append(Books.IMAGE);
+			sql.append(" text,");
 			sql.append(Books.URL);
 			sql.append(" text");
     	sql.append(");");

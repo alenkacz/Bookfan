@@ -122,6 +122,7 @@ public class BooksProvider extends ContentProvider  {
 		public static final String SHELF_ID = "shelfId";
 		public static final String TITLE = "title";
 		public static final String AUTHOR = "author";
+		public static final String IMAGE = "image";
 		public static final String SERVER_UID = "serverUid";
 		public static final String URL = "url";
 		

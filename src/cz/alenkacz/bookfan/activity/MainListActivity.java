@@ -15,13 +15,17 @@ import com.google.gson.Gson;
 import cz.alenkacz.bookfan.R;
 import cz.alenkacz.bookfan.dto.Book;
 import cz.alenkacz.bookfan.dto.UserLogin;
+import cz.alenkacz.bookfan.provider.BooksProvider.Books;
 import cz.alenkacz.bookfan.rest.pojo.BookSearchContainer;
 import cz.alenkacz.bookfan.rest.pojo.BooksLibraryContainer;
+import cz.alenkacz.bookfan.rest.pojo.LibraryBook;
 import cz.alenkacz.bookfan.rest.pojo.LoggedUserContainer;
 import cz.alenkacz.bookfan.tools.Constants;
 import cz.alenkacz.bookfan.tools.Utils;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -183,13 +187,30 @@ public class MainListActivity extends BaseActivity {
 			if (result != null) {
 				BooksLibraryContainer downloaded = new Gson().fromJson(result,
 						BooksLibraryContainer.class);
-				mBooksList.setAdapter(new BooksAdapter(getApplicationContext(),
-						R.layout.part_book_item, downloaded.books));
+				saveToDb(downloaded.books);
+				/*mBooksList.setAdapter(new BooksAdapter(getApplicationContext(),
+						R.layout.part_book_item, downloaded.books));*/
 				
 				setSyncedFlag();
 			} else {
 				showPrompt();
 				mBooksList.setEmptyView(findViewById(R.id.books_list_empty_layout));
+			}
+		}
+		
+		private void saveToDb(List<LibraryBook> books) {
+			for(LibraryBook book : books) {
+				ContentResolver cr = getContentResolver();
+				ContentValues values = new ContentValues();
+				values.put(Books.SHELF_ID, 1);
+				values.put(Books.TITLE, book.getBOOK_TITLE());
+				values.put(Books.AUTHOR, book.getPT_FULL_NAME());
+				values.put(Books.IMAGE, book.getBOOK_THUMB());
+				values.put(Books.SERVER_UID, book.UNI_BOOK_KEY);
+				values.put(Books.URL, Utils.createBookUrl(book.UNI_BOOK_KEY, 
+						book.getBOOK_URL_ALIAS()));
+				
+				cr.insert(Books.CONTENT_URI, values);	
 			}
 		}
 		

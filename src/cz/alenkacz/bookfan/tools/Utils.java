@@ -39,6 +39,15 @@ public class Utils {
 		return sb.toString();
 	}
 	
+	public static String createBookUrl(String uid, String title) {
+		StringBuilder sb = new StringBuilder(Constants.BOOK_URL);
+		sb.append(uid);
+		sb.append("/");
+		sb.append(title);
+		
+		return sb.toString();
+	}
+	
 	public static String getBookAddUrl(String bookId, String token) {
 		StringBuilder sb = new StringBuilder(Constants.BACKEND_BOOK_ADD_URL);
 		sb.append(bookId);
