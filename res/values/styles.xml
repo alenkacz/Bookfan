@@ -23,6 +23,11 @@
 	  <item name="android:textSize">14dip</item>
 	</style>
 	
+    <style name="Theme.Bookfan.List.Button">
+	  <item name="android:layout_marginTop">10dip</item>
+	  <item name="android:layout_marginBottom">10dip</item>
+	</style>
+	
     <style name="Theme.Bookfan.List.Container">
 	  <item name="android:paddingTop">10dip</item>
 	</style>

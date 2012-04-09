@@ -11,6 +11,8 @@ public class Constants {
 	public static final String PREFS_LOGIN_USERNAME = "loginUsername";
 	public static final String PREFS_LOGIN_USERID = "loginUserid";
 	
+	public static final String PREFS_SYNCED = "synced";
+	
 	public static final String EXTRA_ISBN = "isbnExtra";
 	
 	public static final String COOKIE_NAME = "PHPSESSID";

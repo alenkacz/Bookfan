@@ -17,7 +17,10 @@
     <string name="login_failed">Zadali jste nesprávné uživatelské jméno nebo heslo.</string>
         
     <!-- BOOKS LIST  -->
-	<string name="list_no_books">Žádné knihy, přidej první</string>
+	<string name="list_no_books">Žádné knihy v knihovně, přidej první!</string>
+	<string name="list_empty_add_btn">Přidat</string>
+	<string name="list_first_download">Jsi tu poprvé? Stáhni si knihy z knihovny!</string>
+	<string name="list_first_download_btn">Stáhnout</string>
 	
 	<string name="book_library_download_pending">Stahuju tvoji knihovnu do telefonu...</string>    
     <string name="book_search_pending">Hledám tvoji knížku v databázi Bookfanu...</string>

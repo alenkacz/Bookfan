@@ -42,7 +42,7 @@ public class BaseActivity extends SherlockActivity {
         }
     }
     
-    private void initScan() {
+    public void initScan() {
 		/*
 		 * Intent intent = new Intent("com.google.zxing.client.android.SCAN");
 		 * intent.putExtra("SCAN_MODE", "EAN_13_MODE");

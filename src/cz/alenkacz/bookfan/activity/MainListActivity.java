@@ -24,6 +24,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -32,11 +33,18 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainListActivity extends BaseActivity {
 
 	private ListView mBooksList;
+	private View mEmptyView;
+	private TextView mEmptyDownloadTv;
+	private Button mEmptyDownloadBtn;
+	private TextView mEmptyTv;
+	private Button mEmptyBtn;
+	
 	private SharedPreferences mPrefs;
 	private ProgressDialog mDownloadingDialog;
 
@@ -62,8 +70,16 @@ public class MainListActivity extends BaseActivity {
 	}
 
 	private void setupViews() {
+		mEmptyView  = (View) findViewById(R.id.books_list_empty_layout);
+		mEmptyDownloadTv = (TextView) findViewById(R.id.books_list_empty_download_tv);
+		mEmptyDownloadBtn = (Button) findViewById(R.id.books_list_empty_download_btn);
+		mEmptyTv = (TextView) findViewById(R.id.books_list_empty_tv);
+		mEmptyBtn = (Button) findViewById(R.id.books_list_empty_btn);
 		mBooksList = (ListView) findViewById(R.id.books_list_lv);
+		
+		showPrompt();
 
+		mBooksList.setEmptyView(findViewById(R.id.books_list_empty_layout));
 		mBooksList.setOnItemClickListener(new OnItemClickListener() {
 
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
@@ -75,6 +91,44 @@ public class MainListActivity extends BaseActivity {
 			}
 
 		});
+		
+		mEmptyDownloadBtn.setOnClickListener(new OnClickListener(){
+
+			public void onClick(View arg0) {
+				downloadBooks();
+			}
+			
+		});
+		
+		mEmptyBtn.setOnClickListener(new OnClickListener(){
+
+			public void onClick(View v) {
+				initScan();
+			}
+			
+		});
+	}
+	
+	private void showPrompt() {
+		if(mPrefs.getBoolean(Constants.PREFS_SYNCED, false)) {
+			showAddPrompt();
+		} else {
+			showDownloadPrompt();
+		}
+	}
+	
+	private void showDownloadPrompt() {
+		mEmptyDownloadTv.setVisibility(View.VISIBLE);
+		mEmptyDownloadBtn.setVisibility(View.VISIBLE);
+		mEmptyTv.setVisibility(View.GONE);
+		mEmptyBtn.setVisibility(View.GONE);
+	}
+	
+	private void showAddPrompt() {
+		mEmptyDownloadTv.setVisibility(View.GONE);
+		mEmptyDownloadBtn.setVisibility(View.GONE);
+		mEmptyTv.setVisibility(View.VISIBLE);
+		mEmptyBtn.setVisibility(View.VISIBLE);
 	}
 
 	private void downloadBooks() {
@@ -130,9 +184,18 @@ public class MainListActivity extends BaseActivity {
 						BooksLibraryContainer.class);
 				mBooksList.setAdapter(new BooksAdapter(getApplicationContext(),
 						R.layout.part_book_item, downloaded.books));
+				
+				setSyncedFlag();
 			} else {
-
+				showPrompt();
+				mBooksList.setEmptyView(findViewById(R.id.books_list_empty_layout));
 			}
+		}
+		
+		private void setSyncedFlag() {
+			Editor edit = mPrefs.edit();
+			edit.putBoolean(Constants.PREFS_SYNCED, true);
+			edit.commit();
 		}
 	}
 }

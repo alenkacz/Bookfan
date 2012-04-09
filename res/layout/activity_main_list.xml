@@ -8,11 +8,45 @@
         android:id="@+id/books_list_lv"
         android:layout_height="fill_parent"
      	android:layout_width="fill_parent"
+     	android:visibility="gone"
      	style="@style/Theme.Bookfan.List.Container"  /> 
-    <TextView
-        android:id="@+id/android:empty"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/list_no_books" />
-
+    <LinearLayout
+        android:id="@+id/books_list_empty_layout"
+        android:layout_height="fill_parent"
+     	android:layout_width="fill_parent"
+     	android:gravity="center"
+     	android:orientation="vertical" >
+        
+        <TextView
+	        android:id="@+id/books_list_empty_download_tv"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center"
+	        android:text="@string/list_first_download" />
+        
+        <Button 
+            android:id="@+id/books_list_empty_download_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/list_first_download_btn"
+            style="@style/Theme.Bookfan.List.Button" /> 
+                   
+        <TextView
+	        android:id="@+id/books_list_empty_tv"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center"
+	        android:visibility="gone"
+	        android:text="@string/list_no_books" />
+        
+        <Button 
+            android:id="@+id/books_list_empty_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="@string/list_empty_add_btn"
+            style="@style/Theme.Bookfan.List.Button" /> 
+	</LinearLayout>
 </LinearLayout>

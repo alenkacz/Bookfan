@@ -841,7 +841,7 @@ containing a value of this type.
         public static final int abs__title=0x7f04001b;
         public static final int abs__titleDivider=0x7f04001c;
         public static final int abs__up=0x7f04000b;
-        public static final int book_author_tv=0x7f04003e;
+        public static final int book_author_tv=0x7f040043;
         public static final int book_detail_active_layout=0x7f040027;
         public static final int book_detail_add_btn=0x7f040033;
         public static final int book_detail_add_cancel_v=0x7f040032;
@@ -857,14 +857,19 @@ containing a value of this type.
         public static final int book_detail_shelf_sp=0x7f040031;
         public static final int book_detail_shelf_tv=0x7f040030;
         public static final int book_detail_shelf_v=0x7f04002f;
-        public static final int book_detail_star_1_iv=0x7f04003f;
-        public static final int book_detail_star_2_iv=0x7f040040;
-        public static final int book_detail_star_3_iv=0x7f040041;
-        public static final int book_detail_star_4_iv=0x7f040042;
-        public static final int book_detail_star_5_iv=0x7f040043;
+        public static final int book_detail_star_1_iv=0x7f040044;
+        public static final int book_detail_star_2_iv=0x7f040045;
+        public static final int book_detail_star_3_iv=0x7f040046;
+        public static final int book_detail_star_4_iv=0x7f040047;
+        public static final int book_detail_star_5_iv=0x7f040048;
         public static final int book_detail_year=0x7f04002e;
-        public static final int book_item_iv=0x7f04003c;
-        public static final int book_name_tv=0x7f04003d;
+        public static final int book_item_iv=0x7f040041;
+        public static final int book_name_tv=0x7f040042;
+        public static final int books_list_empty_btn=0x7f040040;
+        public static final int books_list_empty_download_btn=0x7f04003e;
+        public static final int books_list_empty_download_tv=0x7f04003d;
+        public static final int books_list_empty_layout=0x7f04003c;
+        public static final int books_list_empty_tv=0x7f04003f;
         public static final int books_list_lv=0x7f04003b;
         public static final int disableHome=0x7f040009;
         public static final int homeAsUp=0x7f040006;
@@ -873,8 +878,8 @@ containing a value of this type.
         public static final int login_email=0x7f040037;
         public static final int login_fb_btn=0x7f04003a;
         public static final int login_password=0x7f040038;
-        public static final int menu_add=0x7f040044;
-        public static final int menu_refresh=0x7f040045;
+        public static final int menu_add=0x7f040049;
+        public static final int menu_refresh=0x7f04004a;
         public static final int normal=0x7f040001;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
@@ -950,29 +955,32 @@ containing a value of this type.
          */
         public static final int abs__shareactionprovider_share_with_application=0x7f090009;
         public static final int app_name=0x7f09000d;
-        public static final int book_add_fail=0x7f090023;
-        public static final int book_add_pending=0x7f090021;
-        public static final int book_add_success=0x7f090022;
-        public static final int book_author=0x7f090025;
-        public static final int book_detail_add_btn=0x7f09001b;
-        public static final int book_detail_add_failed=0x7f090020;
+        public static final int book_add_fail=0x7f090026;
+        public static final int book_add_pending=0x7f090024;
+        public static final int book_add_success=0x7f090025;
+        public static final int book_author=0x7f090028;
+        public static final int book_detail_add_btn=0x7f09001e;
+        public static final int book_detail_add_failed=0x7f090023;
         /**  BOOKS DETAIL  
          */
-        public static final int book_detail_add_label=0x7f09001a;
-        public static final int book_detail_cancel_btn=0x7f09001c;
-        public static final int book_detail_loading_tv=0x7f09001e;
-        public static final int book_detail_more_btn=0x7f09001d;
-        public static final int book_detail_not_found_tv=0x7f09001f;
-        public static final int book_isbn=0x7f090026;
-        public static final int book_library_download_pending=0x7f090017;
+        public static final int book_detail_add_label=0x7f09001d;
+        public static final int book_detail_cancel_btn=0x7f09001f;
+        public static final int book_detail_loading_tv=0x7f090021;
+        public static final int book_detail_more_btn=0x7f090020;
+        public static final int book_detail_not_found_tv=0x7f090022;
+        public static final int book_isbn=0x7f090029;
+        public static final int book_library_download_pending=0x7f09001a;
         /**  TEMPORARY  
          */
-        public static final int book_name=0x7f090024;
-        public static final int book_not_found=0x7f090019;
-        public static final int book_search_pending=0x7f090018;
+        public static final int book_name=0x7f090027;
+        public static final int book_not_found=0x7f09001c;
+        public static final int book_search_pending=0x7f09001b;
         public static final int config_app_id=0x7f09000b;
         public static final int config_salt=0x7f09000a;
         public static final int hello=0x7f09000c;
+        public static final int list_empty_add_btn=0x7f090017;
+        public static final int list_first_download=0x7f090018;
+        public static final int list_first_download_btn=0x7f090019;
         /**  BOOKS LIST  
          */
         public static final int list_no_books=0x7f090016;
@@ -986,15 +994,15 @@ containing a value of this type.
         public static final int login_heading=0x7f09000f;
         public static final int login_password=0x7f090011;
         public static final int login_progress=0x7f090014;
-        public static final int menu_add=0x7f090027;
-        public static final int menu_refresh=0x7f090028;
+        public static final int menu_add=0x7f09002a;
+        public static final int menu_refresh=0x7f09002b;
     }
     public static final class style {
-        public static final int BookScreen=0x7f0a0064;
+        public static final int BookScreen=0x7f0a0065;
         public static final int DialogWindowTitle_Sherlock=0x7f0a0033;
         public static final int DialogWindowTitle_Sherlock_Light=0x7f0a0034;
-        public static final int Heading=0x7f0a0065;
-        public static final int LoginScreen=0x7f0a0063;
+        public static final int Heading=0x7f0a0066;
+        public static final int LoginScreen=0x7f0a0064;
         public static final int Sherlock___TextAppearance_Small=0x7f0a0047;
         public static final int Sherlock___Theme=0x7f0a004a;
         public static final int Sherlock___Theme_DarkActionBar=0x7f0a004c;
@@ -1029,14 +1037,15 @@ containing a value of this type.
         public static final int Theme_Bookfan=0x7f0a0058;
         public static final int Theme_Bookfan_Actionbar=0x7f0a0059;
         public static final int Theme_Bookfan_Actionbar_Title=0x7f0a005a;
-        public static final int Theme_Bookfan_Book=0x7f0a0060;
-        public static final int Theme_Bookfan_Book_Author=0x7f0a0062;
-        public static final int Theme_Bookfan_Book_Heading=0x7f0a0061;
+        public static final int Theme_Bookfan_Book=0x7f0a0061;
+        public static final int Theme_Bookfan_Book_Author=0x7f0a0063;
+        public static final int Theme_Bookfan_Book_Heading=0x7f0a0062;
         public static final int Theme_Bookfan_List=0x7f0a005b;
-        public static final int Theme_Bookfan_List_Author=0x7f0a005f;
-        public static final int Theme_Bookfan_List_Container=0x7f0a005c;
-        public static final int Theme_Bookfan_List_Heading=0x7f0a005e;
-        public static final int Theme_Bookfan_List_Text=0x7f0a005d;
+        public static final int Theme_Bookfan_List_Author=0x7f0a0060;
+        public static final int Theme_Bookfan_List_Button=0x7f0a005c;
+        public static final int Theme_Bookfan_List_Container=0x7f0a005d;
+        public static final int Theme_Bookfan_List_Heading=0x7f0a005f;
+        public static final int Theme_Bookfan_List_Text=0x7f0a005e;
         public static final int Theme_Sherlock=0x7f0a004e;
         public static final int Theme_Sherlock_Dialog=0x7f0a0056;
         public static final int Theme_Sherlock_ForceOverflow=0x7f0a0053;
