@@ -8,6 +8,7 @@ import com.google.android.imageloader.ImageLoader;
 import cz.alenkacz.bookfan.R;
 import cz.alenkacz.bookfan.dto.Book;
 import cz.alenkacz.bookfan.rest.pojo.LibraryBook;
+import cz.alenkacz.bookfan.tools.Constants;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,7 +53,10 @@ public class BooksAdapter extends ArrayAdapter<LibraryBook> {
                     if (authorTv != null) {
                     	authorTv.setText(book.getPT_FULL_NAME());
                     }
+                    
+                    v.setTag(Constants.BOOK_URL + book.UNI_BOOK_KEY + "/" + book.getBOOK_URL_ALIAS());
             }
+            
             return v;
     }
 }

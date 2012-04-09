@@ -25,6 +25,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -82,12 +83,12 @@ public class MainListActivity extends BaseActivity {
 		mBooksList.setEmptyView(findViewById(R.id.books_list_empty_layout));
 		mBooksList.setOnItemClickListener(new OnItemClickListener() {
 
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+			public void onItemClick(AdapterView<?> arg0, View view, int arg2,
 					long arg3) {
-				// TODO put some actual code here
-				Intent i = new Intent(getApplicationContext(),
-						BookDetailActivity.class);
+				Intent i = new Intent("android.intent.action.VIEW", 
+						Uri.parse((String)view.getTag()));
 				startActivity(i);
+				
 			}
 
 		});

@@ -18,6 +18,8 @@ public class Constants {
 	public static final String COOKIE_NAME = "PHPSESSID";
 	public static final String COOKIE_DOMAIN = "http://www.bookfan.eu";
 	
+	public static final String BOOK_URL = "http://www.bookfan.eu/kniha/";
+	
 	public static final String BACKEND_LOGIN_URL = "http://www.bookfan.eu/api/2/login?";
 	public static final String BACKEND_BOOK_ADD_URL = "http://www.bookfan.eu/api/2/library/add/";
 	public static final String BACKEND_BOOK_FIND_URL = "http://www.bookfan.eu/api/2/search/book?q=";
