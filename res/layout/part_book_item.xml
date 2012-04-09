@@ -10,20 +10,26 @@
         android:layout_height="70dip"
         android:layout_marginRight="6dip"
         android:src="@drawable/ic_launcher" />
-    
-    <TextView
-        android:id="@+id/book_name_tv"
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/book_name"
-        android:layout_toRightOf="@id/book_item_iv" />
-    
-    <TextView
-        android:id="@+id/book_author_tv"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/book_name"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
         android:layout_toRightOf="@id/book_item_iv"
-        android:layout_below="@id/book_name_tv"  />
-
+        style="@style/Theme.Bookfan.List.Text"
+        android:gravity="center"
+        >
+	    <TextView
+	        android:id="@+id/book_name_tv"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/book_name"
+	        style="@style/Theme.Bookfan.List.Heading"/>   
+	         
+	    <TextView
+	        android:id="@+id/book_author_tv"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/book_name"
+	        style="@style/Theme.Bookfan.List.Author"   />
+	</LinearLayout>
 </RelativeLayout>

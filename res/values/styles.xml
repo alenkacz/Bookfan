@@ -12,6 +12,29 @@
         <item name="android:textColor">#0084dc</item>
     </style>
     
+    <style name="Theme.Bookfan.List">
+	  <item name="android:textSize">14dip</item>
+	</style>
+	
+    <style name="Theme.Bookfan.List.Container">
+	  <item name="android:paddingTop">10dip</item>
+	</style>
+        
+    <style name="Theme.Bookfan.List.Text">
+	  <item name="android:paddingLeft">15dip</item>
+	</style>
+	
+    <style name="Theme.Bookfan.List.Heading">
+	  <item name="android:textStyle">bold</item>
+	  <item name="android:textSize">16dip</item>
+	  <item name="android:textColor">@color/book_heading_color</item>
+	</style>
+	
+    <style name="Theme.Bookfan.List.Author">
+	  <item name="android:textStyle">bold</item>
+	  <item name="android:textColor">@color/book_author_color</item>
+	</style>
+    
     <style name="Theme.Bookfan.Book">
 	  <item name="android:textSize">14dip</item>
 	</style>

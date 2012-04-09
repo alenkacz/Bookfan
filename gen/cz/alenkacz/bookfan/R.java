@@ -984,11 +984,11 @@ containing a value of this type.
         public static final int menu_save=0x7f090026;
     }
     public static final class style {
-        public static final int BookScreen=0x7f0a005e;
+        public static final int BookScreen=0x7f0a0063;
         public static final int DialogWindowTitle_Sherlock=0x7f0a0033;
         public static final int DialogWindowTitle_Sherlock_Light=0x7f0a0034;
-        public static final int Heading=0x7f0a005f;
-        public static final int LoginScreen=0x7f0a005d;
+        public static final int Heading=0x7f0a0064;
+        public static final int LoginScreen=0x7f0a0062;
         public static final int Sherlock___TextAppearance_Small=0x7f0a0047;
         public static final int Sherlock___Theme=0x7f0a004a;
         public static final int Sherlock___Theme_DarkActionBar=0x7f0a004c;
@@ -1022,9 +1022,14 @@ containing a value of this type.
         public static final int TextAppearance_Sherlock_Widget_TextView_SpinnerItem=0x7f0a0043;
         public static final int Theme_Bookfan=0x7f0a0058;
         public static final int Theme_Bookfan_Actionbar=0x7f0a0059;
-        public static final int Theme_Bookfan_Book=0x7f0a005a;
-        public static final int Theme_Bookfan_Book_Author=0x7f0a005c;
-        public static final int Theme_Bookfan_Book_Heading=0x7f0a005b;
+        public static final int Theme_Bookfan_Book=0x7f0a005f;
+        public static final int Theme_Bookfan_Book_Author=0x7f0a0061;
+        public static final int Theme_Bookfan_Book_Heading=0x7f0a0060;
+        public static final int Theme_Bookfan_List=0x7f0a005a;
+        public static final int Theme_Bookfan_List_Author=0x7f0a005e;
+        public static final int Theme_Bookfan_List_Container=0x7f0a005b;
+        public static final int Theme_Bookfan_List_Heading=0x7f0a005d;
+        public static final int Theme_Bookfan_List_Text=0x7f0a005c;
         public static final int Theme_Sherlock=0x7f0a004e;
         public static final int Theme_Sherlock_Dialog=0x7f0a0056;
         public static final int Theme_Sherlock_ForceOverflow=0x7f0a0053;
