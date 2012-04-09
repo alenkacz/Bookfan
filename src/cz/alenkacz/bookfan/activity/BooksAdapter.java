@@ -54,7 +54,9 @@ public class BooksAdapter extends ArrayAdapter<LibraryBook> {
                     	authorTv.setText(book.getPT_FULL_NAME());
                     }
                     
-                    v.setTag(Constants.BOOK_URL + book.UNI_BOOK_KEY + "/" + book.getBOOK_URL_ALIAS());
+                    if(book.UNI_BOOK_KEY != null && book.getBOOK_THUMB() != null)
+                    	v.setTag(Constants.BOOK_URL + book.UNI_BOOK_KEY + "/" + 
+                    			book.getBOOK_URL_ALIAS());
             }
             
             return v;
