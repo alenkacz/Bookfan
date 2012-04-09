@@ -19,6 +19,7 @@
     <!-- BOOKS LIST  -->
 	<string name="list_no_books">Žádné knihy, přidej první</string>
 	
+	<string name="book_library_download_pending">Stahuju tvoji knihovnu do telefonu...</string>    
     <string name="book_search_pending">Hledám tvoji knížku v databázi Bookfanu...</string>
     <string name="book_not_found">Tuto knihu jsme v databázi Bookfanu bohužel nenašli...</string>
 	
@@ -39,7 +40,9 @@
     <string name="book_name">Název knihy</string>
     <string name="book_author">Autor knihy</string>
     <string name="book_isbn">ISBN</string>
-    <string name="menu_save">Ulozit</string>
+    
+    <string name="menu_add">Přidat</string>
+    <string name="menu_refresh">Obnovit</string>
     
     <string-array name="shelf_array">
         <item>Přečtené</item>

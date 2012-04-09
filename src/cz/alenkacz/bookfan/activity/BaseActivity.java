@@ -6,6 +6,7 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
 import cz.alenkacz.bookfan.R;
+import cz.alenkacz.bookfan.tools.Constants;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,8 +34,24 @@ public class BaseActivity extends SherlockActivity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 return true;
+            case R.id.menu_add:
+    			initScan();
+    			return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+    
+    private void initScan() {
+		/*
+		 * Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+		 * intent.putExtra("SCAN_MODE", "EAN_13_MODE");
+		 * startActivityForResult(intent, 0);
+		 */
+
+		// TODO re-enable scanning
+		Intent i = new Intent(getApplicationContext(), BookDetailActivity.class);
+		i.putExtra(Constants.EXTRA_ISBN, "9788024233109");
+		startActivity(i);
+	}
 }

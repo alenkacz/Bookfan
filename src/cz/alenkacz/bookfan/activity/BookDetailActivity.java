@@ -6,6 +6,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 
+import com.actionbarsherlock.view.MenuItem;
 import com.google.android.imageloader.ImageLoader;
 import com.google.gson.Gson;
 
@@ -60,6 +61,7 @@ public class BookDetailActivity extends BaseActivity {
 	private ProgressDialog mBookAddDialog;
 	
 	private Book mDownloadedBook;
+	private String isbn;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,7 +70,7 @@ public class BookDetailActivity extends BaseActivity {
         
         mImageLoader = ImageLoader.get(this);
         mPrefs = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
-        String isbn = getIntent().getStringExtra(Constants.EXTRA_ISBN);
+        isbn = getIntent().getStringExtra(Constants.EXTRA_ISBN);
         
         if(isbn != null) {
         	mSearchingDialog = ProgressDialog.show(BookDetailActivity.this, "", 
@@ -81,6 +83,19 @@ public class BookDetailActivity extends BaseActivity {
         	setupViews();
         	setupMockupView();
         }
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_refresh:
+			mSearchingDialog = ProgressDialog.show(BookDetailActivity.this, "", 
+        			getString(R.string.book_search_pending), true);
+			new BookFindAsyncTask().execute(isbn);
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 	
 	private void setupViews() {

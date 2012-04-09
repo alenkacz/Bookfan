@@ -1,6 +1,7 @@
 <resources>
     <color name="actionbar_background_start">#272727</color>
     <color name="actionbar_background_end">#1A1A1A</color>
+    <color name="actionbar_title">#FFF</color>
     
     <color name="book_heading_color">#DE5941</color>
     <color name="book_author_color">#654118</color>
