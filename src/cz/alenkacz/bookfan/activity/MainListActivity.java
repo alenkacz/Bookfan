@@ -9,6 +9,8 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.google.gson.Gson;
 
@@ -76,17 +78,13 @@ public class MainListActivity extends BaseActivity {
 			finish();
 		}
 	}
-
+	
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.menu_refresh:
-			downloadBooks();
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-	}
+    public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getSupportMenuInflater();
+        inflater.inflate(R.menu.list, menu);
+        return true;
+    }
 
 	private void setupViews() {
 		mEmptyView  = (View) findViewById(R.id.books_list_empty_layout);
@@ -169,6 +167,41 @@ public class MainListActivity extends BaseActivity {
 				// Handle cancel
 			}
 		}
+	}
+	
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+	        case R.id.menu_refresh:
+				downloadBooks();
+				return true;
+            case R.id.menu_shelf_home:
+            	item.setChecked(true);
+            	shelfSelected(ShelfEnum.home);
+            	return true;
+            case R.id.menu_shelf_old:
+            	item.setChecked(true);
+            	shelfSelected(ShelfEnum.old);
+            	return true;
+            case R.id.menu_shelf_read:
+            	item.setChecked(true);
+            	shelfSelected(ShelfEnum.read);
+            	return true;
+            case R.id.menu_shelf_reading:
+            	item.setChecked(true);
+            	shelfSelected(ShelfEnum.reading);
+            	return true;
+            case R.id.menu_shelf_toread:
+            	item.setChecked(true);
+            	shelfSelected(ShelfEnum.toread);
+            	return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+	
+	private void shelfSelected(ShelfEnum shelf) {
+		
 	}
 	
 	private void getSavedCategories() {

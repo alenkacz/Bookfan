@@ -6,6 +6,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.google.android.imageloader.ImageLoader;
 import com.google.gson.Gson;
@@ -97,6 +99,13 @@ public class BookDetailActivity extends BaseActivity {
 			return super.onOptionsItemSelected(item);
 		}
 	}
+	
+	@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getSupportMenuInflater();
+        inflater.inflate(R.menu.detail, menu);
+        return true;
+    }
 	
 	private void setupViews() {
 		mActiveLayout = (View) findViewById(R.id.book_detail_active_layout);

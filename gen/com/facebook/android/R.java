@@ -894,15 +894,15 @@ containing a value of this type.
         public static final int login_fb_btn=0x7f04003a;
         public static final int login_password=0x7f040038;
         public static final int menu_add=0x7f040049;
-        public static final int menu_logout=0x7f040052;
+        public static final int menu_logout=0x7f04004b;
         public static final int menu_refresh=0x7f04004a;
-        public static final int menu_shelf=0x7f04004b;
-        public static final int menu_shelf_group=0x7f04004c;
-        public static final int menu_shelf_home=0x7f040050;
-        public static final int menu_shelf_old=0x7f04004f;
-        public static final int menu_shelf_read=0x7f04004d;
-        public static final int menu_shelf_reading=0x7f040051;
-        public static final int menu_shelf_toread=0x7f04004e;
+        public static final int menu_shelf=0x7f04004c;
+        public static final int menu_shelf_group=0x7f04004d;
+        public static final int menu_shelf_home=0x7f040051;
+        public static final int menu_shelf_old=0x7f040050;
+        public static final int menu_shelf_read=0x7f04004e;
+        public static final int menu_shelf_reading=0x7f040052;
+        public static final int menu_shelf_toread=0x7f04004f;
         public static final int normal=0x7f040001;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
@@ -944,7 +944,8 @@ containing a value of this type.
         public static final int sherlock_spinner_item=0x7f03001a;
     }
     public static final class menu {
-        public static final int actionbar=0x7f0c0000;
+        public static final int detail=0x7f0c0000;
+        public static final int list=0x7f0c0001;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 

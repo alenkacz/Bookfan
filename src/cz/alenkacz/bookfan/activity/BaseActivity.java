@@ -23,13 +23,6 @@ public class BaseActivity extends SherlockActivity {
 		
 		mPrefs = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
 	}
-	
-	@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getSupportMenuInflater();
-        inflater.inflate(R.menu.actionbar, menu);
-        return true;
-    }
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -46,6 +39,21 @@ public class BaseActivity extends SherlockActivity {
             case R.id.menu_logout:
     			logout();
     			return true;
+            case R.id.menu_shelf_home:
+            	item.setChecked(true);
+            	return true;
+            case R.id.menu_shelf_old:
+            	item.setChecked(true);
+            	return true;
+            case R.id.menu_shelf_read:
+            	item.setChecked(true);
+            	return true;
+            case R.id.menu_shelf_reading:
+            	item.setChecked(true);
+            	return true;
+            case R.id.menu_shelf_toread:
+            	item.setChecked(true);
+            	return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
