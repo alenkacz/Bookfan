@@ -203,15 +203,27 @@ public class MainListActivity extends BaseActivity {
 			if (result != null) {
 				BooksLibraryContainer downloaded = new Gson().fromJson(result,
 						BooksLibraryContainer.class);
+				deleteAllInDb();
 				saveToDb(downloaded.books);
-				/*mBooksList.setAdapter(new BooksAdapter(getApplicationContext(),
-						R.layout.part_book_item, downloaded.books));*/
 				
 				setSyncedFlag();
 				getSavedCategories();
 			} else {
 				showPrompt();
 				mBooksList.setEmptyView(findViewById(R.id.books_list_empty_layout));
+			}
+		}
+		
+		private void deleteAllInDb() {
+			ContentResolver cr = getContentResolver();
+			final String[] projection = { Books._ID };
+			Cursor result = cr.query(Books.CONTENT_URI, projection, null, null, null);
+			if(result.moveToFirst()) {
+				while(!result.isAfterLast()) {
+					String id = result.getString(result.getColumnIndex(Books._ID));
+					int count = cr.delete(Books.CONTENT_URI, Books._ID + "=" + id, null);
+					result.moveToNext();
+				}
 			}
 		}
 		
