@@ -146,6 +146,7 @@ public class BooksProvider extends ContentProvider  {
         mProjectionMap.put(Books.SHELF_ID, Books.SHELF_ID);
         mProjectionMap.put(Books.AUTHOR, Books.AUTHOR);
         mProjectionMap.put(Books.SERVER_UID, Books.SERVER_UID);
+        mProjectionMap.put(Books.IMAGE, Books.IMAGE);
         mProjectionMap.put(Books.URL, Books.URL);
     }
 

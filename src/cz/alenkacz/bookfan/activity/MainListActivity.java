@@ -29,6 +29,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -61,6 +62,7 @@ public class MainListActivity extends BaseActivity {
 		mPrefs = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
 
 		setupViews();
+		getSavedCategories();
 	}
 
 	@Override
@@ -156,6 +158,20 @@ public class MainListActivity extends BaseActivity {
 			}
 		}
 	}
+	
+	private void getSavedCategories() {
+		ContentResolver cr = getContentResolver();
+		final String[] projection = { Books._ID, Books.AUTHOR, Books.IMAGE, 
+				Books.SHELF_ID, Books.TITLE, Books.URL };
+		Cursor result = cr.query(Books.CONTENT_URI, projection, null, null, null);
+		
+		BooksCursorAdapter adapter = new BooksCursorAdapter(this, result);
+		mBooksList.setAdapter(adapter);
+		
+		if(result.getCount() == 0) {
+			mBooksList.setEmptyView(findViewById(R.id.books_list_empty_layout));
+		}
+	}
 
 	private class LibraryFetchAsyncTask extends AsyncTask<Void, Void, String> {
 
@@ -192,6 +208,7 @@ public class MainListActivity extends BaseActivity {
 						R.layout.part_book_item, downloaded.books));*/
 				
 				setSyncedFlag();
+				getSavedCategories();
 			} else {
 				showPrompt();
 				mBooksList.setEmptyView(findViewById(R.id.books_list_empty_layout));
