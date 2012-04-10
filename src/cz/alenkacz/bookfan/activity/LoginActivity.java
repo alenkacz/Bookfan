@@ -60,10 +60,13 @@ public class LoginActivity extends SherlockActivity {
         mPrefs = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
         mActivity = this;
         mFacebook = new Facebook(getString(R.string.config_app_id)); 
-       
-        getSupportActionBar().show();
         
         setupViews();
+        
+        if(isLoggedIn()) {
+        	final Intent i = new Intent(getApplicationContext(), MainListActivity.class);
+        	startActivity(i);
+        }
     }
     
     public void onResume() {    
@@ -111,17 +114,9 @@ public class LoginActivity extends SherlockActivity {
     }
     
     private boolean isLoggedIn() {
-    	String access_token = mPrefs.getString(Constants.PREFS_FB_TOKEN, null);
-        long expires = mPrefs.getLong(Constants.PREFS_FB_TOKEN_EXPIRES, 0);
-        
-        if(access_token != null) {
-            mFacebook.setAccessToken(access_token);
-        }
-        if(expires != 0) {
-            mFacebook.setAccessExpires(expires);
-        }
-        
-        return mFacebook.isSessionValid();
+    	String token = mPrefs.getString(Constants.PREFS_LOGIN_TOKEN, null);
+    	
+    	return (token != null);
     }
     
     @Override

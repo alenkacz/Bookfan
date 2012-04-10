@@ -64,6 +64,18 @@ public class MainListActivity extends BaseActivity {
 		setupViews();
 		getSavedCategories();
 	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		
+		if(!isLoggedIn()) {
+			Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+			i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+			startActivity(i);
+			finish();
+		}
+	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

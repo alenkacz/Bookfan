@@ -9,13 +9,19 @@ import cz.alenkacz.bookfan.R;
 import cz.alenkacz.bookfan.tools.Constants;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 
 public class BaseActivity extends SherlockActivity {
 	
+	private SharedPreferences mPrefs;
+	
 	@Override
 	public void onCreate(Bundle savedInstance) {
 		super.onCreate(savedInstance);
+		
+		mPrefs = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
 	}
 	
 	@Override
@@ -37,6 +43,9 @@ public class BaseActivity extends SherlockActivity {
             case R.id.menu_add:
     			initScan();
     			return true;
+            case R.id.menu_logout:
+    			logout();
+    			return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -54,4 +63,20 @@ public class BaseActivity extends SherlockActivity {
 		i.putExtra(Constants.EXTRA_ISBN, "9788024233109");
 		startActivity(i);
 	}
+    
+    public void logout() {
+    	Editor e = mPrefs.edit();
+    	e.putString(Constants.PREFS_LOGIN_TOKEN, null);
+    	e.commit();
+    	
+    	Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+    	i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+		startActivity(i);
+    }
+    
+    protected boolean isLoggedIn() {
+    	String token = mPrefs.getString(Constants.PREFS_LOGIN_TOKEN, null);
+    	
+    	return (token != null);
+    }
 }
