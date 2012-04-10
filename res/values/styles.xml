@@ -6,7 +6,7 @@
     <item name="android:actionBarStyle">@style/Theme.Bookfan.Actionbar</item>
   </style>
   
-    <style name="Theme.Bookfan.Actionbar" parent="Widget.Sherlock.ActionBar">
+    <style name="Theme.Bookfan.Actionbar" parent="Widget.Sherlock.ActionBar.Solid">
         <item name="background">#574A3B</item>
         <item name="android:background">#574A3B</item>
         <item name="android:titleTextStyle">@style/Theme.Bookfan.Actionbar.Title</item>
@@ -14,8 +14,6 @@
         <item name="android:actionDropDownStyle">@style/Theme.Bookfan.Actionbar.DropDownNav</item>
         <item name="actionDropDownStyle">@style/Theme.Bookfan.Actionbar.DropDownNav</item>
         <item name="android:listChoiceIndicatorMultiple">@drawable/ad_btn_check_holo_light</item>
-    	<item name="android:actionMenuTextColor">@color/actionbar_title</item>
-    	<item name="actionMenuTextColor">@color/actionbar_title</item>
     </style>
     
     <style name="Theme.Bookfan.Actionbar.DropDownNav" parent="Widget.Sherlock.Light.Spinner.DropDown.ActionBar">

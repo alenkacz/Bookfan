@@ -3,15 +3,16 @@
     <item android:id="@+id/menu_add"
           android:icon="@drawable/ic_action_add"
           android:title="@string/menu_add"
-          android:showAsAction="ifRoom" />
+          android:showAsAction="always"/>
     
     <item android:id="@+id/menu_refresh"
           android:icon="@drawable/ic_action_refresh"
           android:title="@string/menu_refresh"
-          android:showAsAction="ifRoom" />
+          android:showAsAction="always" />
     
     <item 
         android:id="@+id/menu_shelf" 
+        android:icon="@drawable/ic_btn_shelf"
         android:title="@string/menu_shelf"
         android:showAsAction="always" >
 		<menu>
@@ -44,5 +45,5 @@
     
     <item android:id="@+id/menu_logout"
           android:title="@string/menu_logout"
-          android:showAsAction="ifRoom" />
+          android:showAsAction="never" />
 </menu>

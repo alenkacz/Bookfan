@@ -817,13 +817,14 @@ containing a value of this type.
         public static final int facebook_logo=0x7f02006b;
         public static final int ic_action_add=0x7f02006c;
         public static final int ic_action_refresh=0x7f02006d;
-        public static final int ic_launcher=0x7f02006e;
-        public static final int selected_background=0x7f02006f;
-        public static final int spinner_default_holo_light=0x7f020070;
-        public static final int spinner_disabled_holo_light=0x7f020071;
-        public static final int star_empty=0x7f020072;
-        public static final int star_full=0x7f020073;
-        public static final int star_half=0x7f020074;
+        public static final int ic_btn_shelf=0x7f02006e;
+        public static final int ic_launcher=0x7f02006f;
+        public static final int selected_background=0x7f020070;
+        public static final int spinner_default_holo_light=0x7f020071;
+        public static final int spinner_disabled_holo_light=0x7f020072;
+        public static final int star_empty=0x7f020073;
+        public static final int star_full=0x7f020074;
+        public static final int star_half=0x7f020075;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f040022;
