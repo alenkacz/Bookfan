@@ -1,5 +1,6 @@
 package cz.alenkacz.bookfan.activity;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLDecoder;
 
@@ -21,6 +22,7 @@ import com.google.gson.Gson;
 
 import cz.alenkacz.bookfan.R;
 import cz.alenkacz.bookfan.dto.UserLogin;
+import cz.alenkacz.bookfan.rest.pojo.FBUser;
 import cz.alenkacz.bookfan.rest.pojo.LoggedUserContainer;
 import cz.alenkacz.bookfan.tools.Constants;
 import cz.alenkacz.bookfan.tools.Utils;
@@ -47,6 +49,7 @@ public class LoginActivity extends SherlockActivity {
 	private EditText mPasswordEt;
 	
 	private ProgressDialog mLoginDialog;
+	private ProgressDialog mFbLoginDialog;
 	private LoginActivity mActivity;
 		
     @Override
@@ -57,7 +60,7 @@ public class LoginActivity extends SherlockActivity {
         mPrefs = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
         mActivity = this;
         mFacebook = new Facebook(getString(R.string.config_app_id)); 
-        
+       
         getSupportActionBar().show();
         
         setupViews();
@@ -77,7 +80,7 @@ public class LoginActivity extends SherlockActivity {
     	mLoginBtn.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View v) {
-				processLogin();
+				executeLogin();
 			}
     		
     	});
@@ -97,7 +100,7 @@ public class LoginActivity extends SherlockActivity {
     /**
      * Retrieves data from edittext and tries to authorize user against server
      */
-    private void processLogin() {
+    private void executeLogin() {
     	String email = mEmailEt.getText().toString();
     	String password = mPasswordEt.getText().toString();
     	
@@ -135,6 +138,18 @@ public class LoginActivity extends SherlockActivity {
             editor.putString(Constants.PREFS_FB_TOKEN, mFacebook.getAccessToken());
             editor.putLong(Constants.PREFS_FB_TOKEN_EXPIRES, mFacebook.getAccessExpires());
             editor.commit();
+            
+            try {
+            	String json = mFacebook.request("me");
+            	FBUser user = new Gson().fromJson(json, FBUser.class);
+            	
+            	mFbLoginDialog = ProgressDialog.show(LoginActivity.this, "", 
+            			getString(R.string.login_progress), true);
+            	new FacebookLoginAsyncTask().execute(user.id);
+            } catch(IOException e) {
+            	e.printStackTrace();
+            	// authorization failed msg
+            }
 		}
 
 		public void onFacebookError(FacebookError e) {
@@ -153,6 +168,32 @@ public class LoginActivity extends SherlockActivity {
 			// intentionally nothing
 		}
     	
+    }
+    
+    private void processLogin(LoggedUserContainer user) {
+    	if(user.getErrormsg() == null || user.getErrormsg().length() == 0) {
+        	SharedPreferences.Editor editor = mPrefs.edit();
+            editor.putString(Constants.PREFS_LOGIN_TOKEN, user.token);
+            editor.putString(Constants.PREFS_LOGIN_USERNAME, user.userData.fullname);
+            editor.putString(Constants.PREFS_LOGIN_USERID, user.userData.userId);
+            editor.commit();
+            
+            final Intent i = new Intent(getApplicationContext(), MainListActivity.class);
+        	startActivity(i);
+    	} else {
+    		loginFailed(user.getErrormsg());
+    	}
+    }
+    
+    private void loginFailed(String msg) {
+    	StringBuilder sb = new StringBuilder(getString(R.string.login_failed));
+    	
+    	if(msg != null) {
+    		sb.append(" MSG:");
+    		sb.append(msg);
+    	}
+    	
+    	Toast.makeText(getApplicationContext(), sb.toString(), Toast.LENGTH_LONG).show();
     }
     
     private class FacebookLoginAsyncTask extends AsyncTask<String, Void, String> {
@@ -188,11 +229,12 @@ public class LoginActivity extends SherlockActivity {
 		
 		@Override
         protected void onPostExecute(String result) {
-        	mLoginDialog.dismiss();
+			mFbLoginDialog.dismiss();
         	
             if(result != null) {
-            	String a = result;
-            	String b = a;
+            	LoggedUserContainer user = new Gson().fromJson(result, 
+            			LoggedUserContainer.class);
+            	processLogin(user);
             }
 		}
     	
@@ -233,33 +275,11 @@ public class LoginActivity extends SherlockActivity {
             if(result != null) {
             	LoggedUserContainer user = new Gson().fromJson(result, LoggedUserContainer.class);
             	
-            	if(user.getErrormsg() == null || user.getErrormsg().length() == 0) {
-	            	SharedPreferences.Editor editor = mPrefs.edit();
-	                editor.putString(Constants.PREFS_LOGIN_TOKEN, user.token);
-	                editor.putString(Constants.PREFS_LOGIN_USERNAME, user.userData.fullname);
-	                editor.putString(Constants.PREFS_LOGIN_USERID, user.userData.userId);
-	                editor.commit();
-	                
-	                final Intent i = new Intent(getApplicationContext(), MainListActivity.class);
-		        	startActivity(i);
-            	} else {
-            		loginFailed(user.getErrormsg());
-            	}
+            	processLogin(user);
             } else {
             	Toast.makeText(getApplicationContext(), getString(R.string.login_failed), 
             			Toast.LENGTH_LONG).show();
             }
-        }
-        
-        private void loginFailed(String msg) {
-        	StringBuilder sb = new StringBuilder(getString(R.string.login_failed));
-        	
-        	if(msg != null) {
-        		sb.append(" MSG:");
-        		sb.append(msg);
-        	}
-        	
-        	Toast.makeText(getApplicationContext(), sb.toString(), Toast.LENGTH_LONG).show();
         }
     }
 }
