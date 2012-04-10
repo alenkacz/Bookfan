@@ -221,7 +221,7 @@ public class MainListActivity extends BaseActivity {
 			if(result.moveToFirst()) {
 				while(!result.isAfterLast()) {
 					String id = result.getString(result.getColumnIndex(Books._ID));
-					int count = cr.delete(Books.CONTENT_URI, Books._ID + "=" + id, null);
+					cr.delete(Books.CONTENT_URI, Books._ID + "=" + id, null);
 					result.moveToNext();
 				}
 			}

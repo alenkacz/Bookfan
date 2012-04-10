@@ -11,6 +11,18 @@
         <item name="android:background">#574A3B</item>
         <item name="android:titleTextStyle">@style/Theme.Bookfan.Actionbar.Title</item>
         <item name="android:displayOptions">showTitle</item>
+        <item name="android:actionDropDownStyle">@style/Theme.Bookfan.Actionbar.DropDownNav</item>
+        <item name="actionDropDownStyle">@style/Theme.Bookfan.Actionbar.DropDownNav</item>
+        <item name="android:listChoiceIndicatorMultiple">@drawable/ad_btn_check_holo_light</item>
+    	<item name="android:actionMenuTextColor">@color/actionbar_title</item>
+    	<item name="actionMenuTextColor">@color/actionbar_title</item>
+    </style>
+    
+    <style name="Theme.Bookfan.Actionbar.DropDownNav" parent="Widget.Sherlock.Light.Spinner.DropDown.ActionBar">
+        <item name="android:textColor">@color/actionbar_title</item>
+        <item name="android:background">@drawable/ad_spinner_background_holo_light</item>
+        <item name="android:popupBackground">@drawable/ad_menu_dropdown_panel_holo_light</item>
+        <item name="android:dropDownSelector">@drawable/ad_selectable_background</item>
     </style>
     
     <style name="Theme.Bookfan.Actionbar.Title">

@@ -9,4 +9,40 @@
           android:icon="@drawable/ic_action_refresh"
           android:title="@string/menu_refresh"
           android:showAsAction="ifRoom" />
+    
+    <item 
+        android:id="@+id/menu_shelf" 
+        android:title="@string/menu_shelf"
+        android:showAsAction="always" >
+		<menu>
+			<group android:id="@+id/menu_shelf_group"
+				android:checkableBehavior="single">
+				
+				<item 
+				    android:id="@+id/menu_shelf_read" 
+				    android:title="@string/menu_shelf_read" 
+				    android:checked="true" />
+
+				<item 
+				    android:id="@+id/menu_shelf_toread" 
+				    android:title="@string/menu_shelf_toread" />
+				
+				<item 
+				    android:id="@+id/menu_shelf_old" 
+				    android:title="@string/menu_shelf_old" />
+				
+				<item 
+				    android:id="@+id/menu_shelf_home" 
+				    android:title="@string/menu_shelf_home" />
+				
+				<item 
+				    android:id="@+id/menu_shelf_reading" 
+				    android:title="@string/menu_shelf_reading" />
+			</group>
+		</menu>
+	</item>
+    
+    <item android:id="@+id/menu_logout"
+          android:title="@string/menu_logout"
+          android:showAsAction="ifRoom" />
 </menu>

@@ -47,6 +47,15 @@
     <string name="menu_add">Přidat</string>
     <string name="menu_refresh">Obnovit</string>
     
+    <string name="menu_shelf">Polička</string>
+    <string name="menu_shelf_read">Četl jsem</string>
+    <string name="menu_shelf_toread">Chci číst</string>
+    <string name="menu_shelf_old">Do bazaru</string>
+    <string name="menu_shelf_home">Mám ji doma</string>
+    <string name="menu_shelf_reading">Právě čtu</string>
+    
+    <string name="menu_logout">Odhlásit se</string>
+    
     <string-array name="shelf_array">
         <item>Přečtené</item>
         <item>K přečtení</item>

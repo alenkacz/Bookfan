@@ -5,4 +5,6 @@
     
     <color name="book_heading_color">#DE5941</color>
     <color name="book_author_color">#654118</color>
+    
+    <color name="android_green">#FFA4C639</color>
 </resources>
