@@ -50,11 +50,13 @@ public class Utils {
 		return sb.toString();
 	}
 	
-	public static String getBookAddUrl(String bookId, String token) {
+	public static String getBookAddUrl(String bookId, int shelfId, String token) {
 		StringBuilder sb = new StringBuilder(Constants.BACKEND_BOOK_ADD_URL);
 		sb.append(bookId);
 		sb.append("/");
 		sb.append(token);
+		sb.append("/");
+		sb.append(shelfId);
 		
 		return sb.toString();
 	}

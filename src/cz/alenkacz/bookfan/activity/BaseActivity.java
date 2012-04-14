@@ -63,6 +63,7 @@ public class BaseActivity extends SherlockActivity {
     public void logout() {
     	Editor e = mPrefs.edit();
     	e.putString(Constants.PREFS_LOGIN_TOKEN, null);
+    	e.putInt(Constants.PREFS_SHELF_ID, 1);
     	e.commit();
     	
     	deleteAllInDb();

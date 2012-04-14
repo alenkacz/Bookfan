@@ -136,7 +136,7 @@ public class BookDetailActivity extends BaseActivity {
 			public void onClick(View arg0) {
 				mBookAddDialog = ProgressDialog.show(BookDetailActivity.this, "", 
 	        			getString(R.string.book_add_pending), true);
-				new BookAddAsyncTask().execute(mDownloadedBook.BOOK_ID);
+				new BookAddAsyncTask().execute((int)mShelfSp.getSelectedItemId()+1);
 			}
 			
 		});
@@ -241,14 +241,14 @@ public class BookDetailActivity extends BaseActivity {
 		}
 	}
 	
-	private class BookAddAsyncTask extends AsyncTask<String, Void, String> {
+	private class BookAddAsyncTask extends AsyncTask<Integer, Void, String> {
 
 		@Override
-		protected String doInBackground(String... bookIds) {
+		protected String doInBackground(Integer... shelfIds) {
 			try {
-				String bookId;
-	        	if(bookIds.length > 0) {
-	        		bookId = bookIds[0];
+				int shelfId;
+	        	if(shelfIds.length > 0) {
+	        		shelfId = shelfIds[0];
 	        	} else {
 	        		return null;
 	        	}
@@ -257,7 +257,8 @@ public class BookDetailActivity extends BaseActivity {
 	        	
 	        	HttpClient hc = Utils.getDefaultHttpClientWithCookie(
 	        			mPrefs.getString(Constants.PREFS_LOGIN_TOKEN, ""));
-				HttpGet get = new HttpGet(Utils.getBookAddUrl(bookId, token));
+				HttpGet get = new HttpGet(Utils.getBookAddUrl(
+						mDownloadedBook.BOOK_ID, shelfId, token));
 	
 				HttpResponse resp = hc.execute(get);
 				int status = resp.getStatusLine().getStatusCode();

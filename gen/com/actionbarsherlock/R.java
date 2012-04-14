@@ -1000,8 +1000,8 @@ containing a value of this type.
         public static final int config_app_id=0x7f09000b;
         public static final int config_salt=0x7f09000a;
         public static final int hello=0x7f09000c;
+        public static final int list_empty=0x7f090018;
         public static final int list_empty_add_btn=0x7f090017;
-        public static final int list_first_download=0x7f090018;
         public static final int list_first_download_btn=0x7f090019;
         /**  BOOKS LIST  
          */
