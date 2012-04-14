@@ -6,11 +6,14 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
 import cz.alenkacz.bookfan.R;
+import cz.alenkacz.bookfan.provider.BooksProvider.Books;
 import cz.alenkacz.bookfan.tools.Constants;
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.database.Cursor;
 import android.os.Bundle;
 
 public class BaseActivity extends SherlockActivity {
@@ -75,12 +78,28 @@ public class BaseActivity extends SherlockActivity {
     public void logout() {
     	Editor e = mPrefs.edit();
     	e.putString(Constants.PREFS_LOGIN_TOKEN, null);
+    	e.putBoolean(Constants.PREFS_SYNCED, false);
     	e.commit();
+    	
+    	deleteAllInDb();
     	
     	Intent i = new Intent(getApplicationContext(), LoginActivity.class);
     	i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 		startActivity(i);
     }
+    
+    public void deleteAllInDb() {
+		ContentResolver cr = getContentResolver();
+		final String[] projection = { Books._ID };
+		Cursor result = cr.query(Books.CONTENT_URI, projection, null, null, null);
+		if(result.moveToFirst()) {
+			while(!result.isAfterLast()) {
+				String id = result.getString(result.getColumnIndex(Books._ID));
+				cr.delete(Books.CONTENT_URI, Books._ID + "=" + id, null);
+				result.moveToNext();
+			}
+		}
+	}
     
     protected boolean isLoggedIn() {
     	String token = mPrefs.getString(Constants.PREFS_LOGIN_TOKEN, null);

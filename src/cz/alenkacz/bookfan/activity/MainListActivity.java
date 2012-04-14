@@ -259,19 +259,6 @@ public class MainListActivity extends BaseActivity {
 			}
 		}
 		
-		private void deleteAllInDb() {
-			ContentResolver cr = getContentResolver();
-			final String[] projection = { Books._ID };
-			Cursor result = cr.query(Books.CONTENT_URI, projection, null, null, null);
-			if(result.moveToFirst()) {
-				while(!result.isAfterLast()) {
-					String id = result.getString(result.getColumnIndex(Books._ID));
-					cr.delete(Books.CONTENT_URI, Books._ID + "=" + id, null);
-					result.moveToNext();
-				}
-			}
-		}
-		
 		private void saveToDb(List<LibraryBook> books) {
 			for(LibraryBook book : books) {
 				ContentResolver cr = getContentResolver();
