@@ -32,9 +32,11 @@ public class Utils {
 		return sb.toString();
 	}
 	
-	public static String getLibraryGetUrl(String token) {
+	public static String getLibraryGetUrl(String token, int shelfId) {
 		StringBuilder sb = new StringBuilder(Constants.BACKEND_LIBRARY_GET_URL);
 		sb.append(token);
+		sb.append("/");
+		sb.append(shelfId);
 		
 		return sb.toString();
 	}

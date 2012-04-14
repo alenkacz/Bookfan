@@ -17,12 +17,12 @@
     <string name="login_failed">Zadali jste nesprávné uživatelské jméno nebo heslo.</string>
         
     <!-- BOOKS LIST  -->
-	<string name="list_no_books">Žádné knihy v knihovně, přidej první!</string>
+	<string name="list_no_books">Nebo přidej první knihu na tuto poličku!</string>
 	<string name="list_empty_add_btn">Přidat</string>
-	<string name="list_first_download">Jsi tu poprvé? Stáhni si knihy z knihovny!</string>
+	<string name="list_empty">Stáhni si knihy z knihovny nebo přidej první!</string>
 	<string name="list_first_download_btn">Stáhnout</string>
 	
-	<string name="book_library_download_pending">Stahuju tvoji knihovnu do telefonu...</string>    
+	<string name="book_library_download_pending">Stahuji tvoji knihovnu do telefonu...</string>    
     <string name="book_search_pending">Hledám tvoji knížku v databázi Bookfanu...</string>
     <string name="book_not_found">Tuto knihu jsme v databázi Bookfanu bohužel nenašli...</string>
 	
@@ -57,7 +57,9 @@
     <string name="menu_logout">Odhlásit se</string>
     
     <string-array name="shelf_array">
-        <item>Přečtené</item>
-        <item>K přečtení</item>
+        <item>@string/menu_shelf_read</item>
+        <item>@string/menu_shelf_toread</item>
+        <item>@string/menu_shelf_home</item>
+        <item>@string/menu_shelf_reading</item>
     </string-array>
 </resources>

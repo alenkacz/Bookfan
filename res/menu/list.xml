@@ -29,10 +29,6 @@
 				    android:title="@string/menu_shelf_toread" />
 				
 				<item 
-				    android:id="@+id/menu_shelf_old" 
-				    android:title="@string/menu_shelf_old" />
-				
-				<item 
 				    android:id="@+id/menu_shelf_home" 
 				    android:title="@string/menu_shelf_home" />
 				

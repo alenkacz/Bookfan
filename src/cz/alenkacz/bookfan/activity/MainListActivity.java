@@ -64,7 +64,7 @@ public class MainListActivity extends BaseActivity {
 		mPrefs = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
 
 		setupViews();
-		getSavedCategories();
+		displayCurrentShelf();
 	}
 	
 	@Override
@@ -90,11 +90,8 @@ public class MainListActivity extends BaseActivity {
 		mEmptyView  = (View) findViewById(R.id.books_list_empty_layout);
 		mEmptyDownloadTv = (TextView) findViewById(R.id.books_list_empty_download_tv);
 		mEmptyDownloadBtn = (Button) findViewById(R.id.books_list_empty_download_btn);
-		mEmptyTv = (TextView) findViewById(R.id.books_list_empty_tv);
 		mEmptyBtn = (Button) findViewById(R.id.books_list_empty_btn);
 		mBooksList = (ListView) findViewById(R.id.books_list_lv);
-		
-		showPrompt();
 
 		mBooksList.setEmptyView(findViewById(R.id.books_list_empty_layout));
 		mBooksList.setOnItemClickListener(new OnItemClickListener() {
@@ -125,33 +122,12 @@ public class MainListActivity extends BaseActivity {
 			
 		});
 	}
-	
-	private void showPrompt() {
-		if(mPrefs.getBoolean(Constants.PREFS_SYNCED, false)) {
-			showAddPrompt();
-		} else {
-			showDownloadPrompt();
-		}
-	}
-	
-	private void showDownloadPrompt() {
-		mEmptyDownloadTv.setVisibility(View.VISIBLE);
-		mEmptyDownloadBtn.setVisibility(View.VISIBLE);
-		mEmptyTv.setVisibility(View.GONE);
-		mEmptyBtn.setVisibility(View.GONE);
-	}
-	
-	private void showAddPrompt() {
-		mEmptyDownloadTv.setVisibility(View.GONE);
-		mEmptyDownloadBtn.setVisibility(View.GONE);
-		mEmptyTv.setVisibility(View.VISIBLE);
-		mEmptyBtn.setVisibility(View.VISIBLE);
-	}
 
 	private void downloadBooks() {
+		int shelfId = mPrefs.getInt(Constants.PREFS_SHELF_ID, 1);
 		mDownloadingDialog = ProgressDialog.show(MainListActivity.this, "",
 				getString(R.string.book_library_download_pending), true);
-		new LibraryFetchAsyncTask().execute();
+		new LibraryFetchAsyncTask().execute(shelfId);
 	}
 
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -179,10 +155,6 @@ public class MainListActivity extends BaseActivity {
             	item.setChecked(true);
             	shelfSelected(ShelfEnum.home);
             	return true;
-            case R.id.menu_shelf_old:
-            	item.setChecked(true);
-            	shelfSelected(ShelfEnum.old);
-            	return true;
             case R.id.menu_shelf_read:
             	item.setChecked(true);
             	shelfSelected(ShelfEnum.read);
@@ -201,14 +173,28 @@ public class MainListActivity extends BaseActivity {
     }
 	
 	private void shelfSelected(ShelfEnum shelf) {
+		Editor e = mPrefs.edit();
+		e.putInt(Constants.PREFS_SHELF_ID, shelf.ordinal());
+		e.commit();
 		
+		displayShelf(shelf.ordinal());
 	}
 	
-	private void getSavedCategories() {
+	private int getCurrentShelfId() {
+		return mPrefs.getInt(Constants.PREFS_SHELF_ID, 1);
+	}
+	
+	private void displayCurrentShelf() {
+		int shelfId = getCurrentShelfId();
+		displayShelf(shelfId);
+	}
+	
+	private void displayShelf(int shelfId) {
 		ContentResolver cr = getContentResolver();
 		final String[] projection = { Books._ID, Books.AUTHOR, Books.IMAGE, 
 				Books.SHELF_ID, Books.TITLE, Books.URL };
-		Cursor result = cr.query(Books.CONTENT_URI, projection, null, null, null);
+		Cursor result = cr.query(Books.CONTENT_URI, projection, 
+				Books.SHELF_ID + "=" + shelfId, null, null);
 		
 		BooksCursorAdapter adapter = new BooksCursorAdapter(this, result);
 		mBooksList.setAdapter(adapter);
@@ -218,15 +204,22 @@ public class MainListActivity extends BaseActivity {
 		}
 	}
 
-	private class LibraryFetchAsyncTask extends AsyncTask<Void, Void, String> {
+	private class LibraryFetchAsyncTask extends AsyncTask<Integer, Void, String> {
 
-		protected String doInBackground(Void... nothing) {
+		protected String doInBackground(Integer... shelfs) {
 			try {
+				int shelfId = 1;
+				if(shelfs.length > 0) {
+					shelfId = shelfs[0];
+				} else {
+					return null;
+				}
+				
 				String token = mPrefs
 						.getString(Constants.PREFS_LOGIN_TOKEN, "");
 				HttpClient hc = Utils.getDefaultHttpClientWithCookie(mPrefs
 						.getString(Constants.PREFS_LOGIN_TOKEN, ""));
-				HttpGet get = new HttpGet(Utils.getLibraryGetUrl(token));
+				HttpGet get = new HttpGet(Utils.getLibraryGetUrl(token, shelfId));
 
 				HttpResponse resp = hc.execute(get);
 				int status = resp.getStatusLine().getStatusCode();
@@ -248,14 +241,28 @@ public class MainListActivity extends BaseActivity {
 			if (result != null) {
 				BooksLibraryContainer downloaded = new Gson().fromJson(result,
 						BooksLibraryContainer.class);
-				deleteAllInDb();
+				deleteCurrentShelfInDb();
 				saveToDb(downloaded.books);
 				
-				setSyncedFlag();
-				getSavedCategories();
+				displayCurrentShelf();
 			} else {
-				showPrompt();
 				mBooksList.setEmptyView(findViewById(R.id.books_list_empty_layout));
+			}
+		}
+		
+		private void deleteCurrentShelfInDb() {
+			int shelfId = mPrefs.getInt(Constants.PREFS_SHELF_ID, 1);
+			
+			ContentResolver cr = getContentResolver();
+			final String[] projection = { Books._ID };
+			Cursor result = cr.query(Books.CONTENT_URI, projection, 
+					Books.SHELF_ID + "=" + shelfId, null, null);
+			if(result.moveToFirst()) {
+				while(!result.isAfterLast()) {
+					String id = result.getString(result.getColumnIndex(Books._ID));
+					cr.delete(Books.CONTENT_URI, Books._ID + "=" + id, null);
+					result.moveToNext();
+				}
 			}
 		}
 		
@@ -263,7 +270,7 @@ public class MainListActivity extends BaseActivity {
 			for(LibraryBook book : books) {
 				ContentResolver cr = getContentResolver();
 				ContentValues values = new ContentValues();
-				values.put(Books.SHELF_ID, 1);
+				values.put(Books.SHELF_ID, getCurrentShelfId());
 				values.put(Books.TITLE, book.getBOOK_TITLE());
 				values.put(Books.AUTHOR, book.getPT_FULL_NAME());
 				values.put(Books.IMAGE, book.getBOOK_THUMB());
@@ -273,12 +280,6 @@ public class MainListActivity extends BaseActivity {
 				
 				cr.insert(Books.CONTENT_URI, values);	
 			}
-		}
-		
-		private void setSyncedFlag() {
-			Editor edit = mPrefs.edit();
-			edit.putBoolean(Constants.PREFS_SYNCED, true);
-			edit.commit();
 		}
 	}
 }

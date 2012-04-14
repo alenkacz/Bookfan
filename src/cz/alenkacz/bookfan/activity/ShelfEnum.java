@@ -1,5 +1,5 @@
 package cz.alenkacz.bookfan.activity;
 
 public enum ShelfEnum {
-	read, old, home, reading, toread;
+	none, read, toread, home, reading;
 }

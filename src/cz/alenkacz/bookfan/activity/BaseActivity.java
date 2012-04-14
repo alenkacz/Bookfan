@@ -42,21 +42,6 @@ public class BaseActivity extends SherlockActivity {
             case R.id.menu_logout:
     			logout();
     			return true;
-            case R.id.menu_shelf_home:
-            	item.setChecked(true);
-            	return true;
-            case R.id.menu_shelf_old:
-            	item.setChecked(true);
-            	return true;
-            case R.id.menu_shelf_read:
-            	item.setChecked(true);
-            	return true;
-            case R.id.menu_shelf_reading:
-            	item.setChecked(true);
-            	return true;
-            case R.id.menu_shelf_toread:
-            	item.setChecked(true);
-            	return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -78,7 +63,6 @@ public class BaseActivity extends SherlockActivity {
     public void logout() {
     	Editor e = mPrefs.edit();
     	e.putString(Constants.PREFS_LOGIN_TOKEN, null);
-    	e.putBoolean(Constants.PREFS_SYNCED, false);
     	e.commit();
     	
     	deleteAllInDb();
