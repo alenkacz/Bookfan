@@ -1027,7 +1027,6 @@ containing a value of this type.
         public static final int menu_shelf_toread=0x7f09002e;
     }
     public static final class style {
-        public static final int BookScreen=0x7f0a0066;
         public static final int DialogWindowTitle_Sherlock=0x7f0a0033;
         public static final int DialogWindowTitle_Sherlock_Light=0x7f0a0034;
         public static final int Heading=0x7f0a0067;
@@ -1069,6 +1068,7 @@ containing a value of this type.
         public static final int Theme_Bookfan_Actionbar_Title=0x7f0a005b;
         public static final int Theme_Bookfan_Book=0x7f0a0062;
         public static final int Theme_Bookfan_Book_Author=0x7f0a0064;
+        public static final int Theme_Bookfan_Book_Detail=0x7f0a0066;
         public static final int Theme_Bookfan_Book_Heading=0x7f0a0063;
         public static final int Theme_Bookfan_List=0x7f0a005c;
         public static final int Theme_Bookfan_List_Author=0x7f0a0061;

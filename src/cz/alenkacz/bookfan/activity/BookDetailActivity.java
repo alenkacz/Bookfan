@@ -16,6 +16,7 @@ import cz.alenkacz.bookfan.R;
 import cz.alenkacz.bookfan.rest.pojo.Book;
 import cz.alenkacz.bookfan.rest.pojo.BookAddResultContainer;
 import cz.alenkacz.bookfan.rest.pojo.BookSearchContainer;
+import cz.alenkacz.bookfan.rest.pojo.ErrorContainer;
 import cz.alenkacz.bookfan.tools.Constants;
 import cz.alenkacz.bookfan.tools.Utils;
 import android.app.Activity;
@@ -158,11 +159,6 @@ public class BookDetailActivity extends BaseActivity {
 			}
 			
 		});
-	}
-	
-	private void setupMockupView() {
-		mActiveLayout.setVisibility(View.VISIBLE);
-		//mLoadingTv.setVisibility(View.GONE);
 	}
 	
 	private void fillBookDetail(BookSearchContainer bookContainer) {
@@ -333,9 +329,10 @@ public class BookDetailActivity extends BaseActivity {
         	mSearchingDialog.dismiss();
         	
             if(result != null) {
-            	BookSearchContainer book = new Gson().fromJson(result, BookSearchContainer.class);
-            	if((book.getErrormsg() == null || book.getErrormsg().length() == 0) &&
-            			book.results != null) {
+            	// workaround - API returns array if nothing found, object if found
+            	ErrorContainer error = new Gson().fromJson(result, ErrorContainer.class);
+            	if(error.getErrormsg() == null || error.getErrormsg().length() == 0) {
+            		BookSearchContainer book = new Gson().fromJson(result, BookSearchContainer.class);
             		mDownloadedBook = book.results;
             		fillBookDetail(book);
             	} else {

@@ -82,7 +82,7 @@
 	  <item name="android:padding">10dip</item>
 	</style>
 	
-    <style name="BookScreen">
+    <style name="Theme.Bookfan.Book.Detail">
 	  <item name="android:padding">20dip</item>
 	</style>
         

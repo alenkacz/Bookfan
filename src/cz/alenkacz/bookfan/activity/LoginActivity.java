@@ -188,9 +188,9 @@ public class LoginActivity extends SherlockActivity {
             editor.putString(Constants.PREFS_LOGIN_USERID, user.userData.userId);
             editor.commit();
             
-            final Intent i = new Intent(getApplicationContext(), MainListActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            final Intent i = new Intent(this, MainListActivity.class);
             startActivity(i);
+            finish();
     	} else {
     		loginFailed(user.getErrormsg());
     	}
