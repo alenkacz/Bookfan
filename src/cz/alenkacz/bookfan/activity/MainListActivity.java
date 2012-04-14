@@ -47,10 +47,7 @@ import android.widget.Toast;
 public class MainListActivity extends BaseActivity {
 
 	private ListView mBooksList;
-	private View mEmptyView;
-	private TextView mEmptyDownloadTv;
 	private Button mEmptyDownloadBtn;
-	private TextView mEmptyTv;
 	private Button mEmptyBtn;
 	
 	private SharedPreferences mPrefs;
@@ -62,7 +59,6 @@ public class MainListActivity extends BaseActivity {
 		setContentView(R.layout.activity_main_list);
 
 		mPrefs = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
-
 		setupViews();
 		displayCurrentShelf();
 	}
@@ -83,12 +79,19 @@ public class MainListActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getSupportMenuInflater();
         inflater.inflate(R.menu.list, menu);
+        
+        try {
+        	menu.getItem(2).getSubMenu().getItem(getCurrentShelfId()-1)
+        		.setChecked(true);
+        } catch(Exception e) {
+        	// intentionally do nothing
+        }
+        
         return true;
     }
 
+	
 	private void setupViews() {
-		mEmptyView  = (View) findViewById(R.id.books_list_empty_layout);
-		mEmptyDownloadTv = (TextView) findViewById(R.id.books_list_empty_download_tv);
 		mEmptyDownloadBtn = (Button) findViewById(R.id.books_list_empty_download_btn);
 		mEmptyBtn = (Button) findViewById(R.id.books_list_empty_btn);
 		mBooksList = (ListView) findViewById(R.id.books_list_lv);
@@ -101,7 +104,6 @@ public class MainListActivity extends BaseActivity {
 				Intent i = new Intent("android.intent.action.VIEW", 
 						Uri.parse((String)view.getTag()));
 				startActivity(i);
-				
 			}
 
 		});
@@ -121,6 +123,12 @@ public class MainListActivity extends BaseActivity {
 			}
 			
 		});
+	}
+	
+	private void resetShelfSettings() {
+		Editor e = mPrefs.edit();
+        e.putInt(Constants.PREFS_SHELF_ID, 1);
+        e.commit();
 	}
 
 	private void downloadBooks() {
