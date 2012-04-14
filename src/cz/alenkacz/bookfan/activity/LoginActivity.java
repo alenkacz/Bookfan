@@ -91,10 +91,20 @@ public class LoginActivity extends SherlockActivity {
     	mFacebookLoginBtn.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View v) {
-				mFacebook.authorize(mActivity, new LoginDialogListener());
-				
-				/*final Intent i = new Intent(getApplicationContext(), MainListActivity.class);
-	        	startActivity(i);*/
+				String access_token = mPrefs.getString(Constants.PREFS_FB_TOKEN, null);
+		        long expires = mPrefs.getLong(Constants.PREFS_FB_TOKEN_EXPIRES, 0);
+		        if(access_token != null) {
+		            mFacebook.setAccessToken(access_token);
+		        }
+		        if(expires != 0) {
+		            mFacebook.setAccessExpires(expires);
+		        }
+		        
+				if(mFacebook.isSessionValid()) {
+					processFBLoginSuccess();
+				} else {
+					mFacebook.authorize(mActivity, new LoginDialogListener());
+				}
 			}
     		
     	});
@@ -119,6 +129,20 @@ public class LoginActivity extends SherlockActivity {
     	return (token != null);
     }
     
+    private void processFBLoginSuccess() {
+    	try {
+        	String json = mFacebook.request("me");
+        	FBUser user = new Gson().fromJson(json, FBUser.class);
+        	
+        	mFbLoginDialog = ProgressDialog.show(LoginActivity.this, "", 
+        			getString(R.string.login_progress), true);
+        	new FacebookLoginAsyncTask().execute(user.id);
+        } catch(IOException e) {
+        	e.printStackTrace();
+        	// authorization failed msg
+        }
+    }
+    
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -134,17 +158,7 @@ public class LoginActivity extends SherlockActivity {
             editor.putLong(Constants.PREFS_FB_TOKEN_EXPIRES, mFacebook.getAccessExpires());
             editor.commit();
             
-            try {
-            	String json = mFacebook.request("me");
-            	FBUser user = new Gson().fromJson(json, FBUser.class);
-            	
-            	mFbLoginDialog = ProgressDialog.show(LoginActivity.this, "", 
-            			getString(R.string.login_progress), true);
-            	new FacebookLoginAsyncTask().execute(user.id);
-            } catch(IOException e) {
-            	e.printStackTrace();
-            	// authorization failed msg
-            }
+            processFBLoginSuccess();
 		}
 
 		public void onFacebookError(FacebookError e) {
@@ -160,7 +174,8 @@ public class LoginActivity extends SherlockActivity {
 		}
 
 		public void onCancel() {
-			// intentionally nothing
+			String a = "a";
+			String b = a;
 		}
     	
     }
