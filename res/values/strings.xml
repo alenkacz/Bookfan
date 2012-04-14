@@ -2,7 +2,7 @@
 <resources>
 
     <string name="hello">Hello World, BookfanActivity!</string>
-    <string name="app_name">Bookfan</string>
+    <string name="app_name">BookFan</string>
 
     <!-- LOGIN  -->
     <string name="login_fb_error">Neodařilo se přihlásit přes Facebook. Zkontrolujte připojení k internetu a zkuste to prosím později.</string>

@@ -23,7 +23,6 @@ public class BaseActivity extends SherlockActivity {
 	@Override
 	public void onCreate(Bundle savedInstance) {
 		super.onCreate(savedInstance);
-		
 		mPrefs = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
 	}
     
@@ -33,7 +32,7 @@ public class BaseActivity extends SherlockActivity {
             case android.R.id.home:
                 // app icon in action bar clicked; go home
                 Intent intent = new Intent(this, MainListActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
                 return true;
             case R.id.menu_add:
@@ -48,16 +47,15 @@ public class BaseActivity extends SherlockActivity {
     }
     
     public void initScan() {
-		/*
-		 * Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-		 * intent.putExtra("SCAN_MODE", "EAN_13_MODE");
-		 * startActivityForResult(intent, 0);
-		 */
+		 Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+		 intent.putExtra("SCAN_MODE", "EAN_13_MODE");
+		 startActivityForResult(intent, 0);
+		 
 
 		// TODO re-enable scanning
-		Intent i = new Intent(getApplicationContext(), BookDetailActivity.class);
+		/*Intent i = new Intent(getApplicationContext(), BookDetailActivity.class);
 		i.putExtra(Constants.EXTRA_ISBN, "9788024233109");
-		startActivity(i);
+		startActivity(i);*/
 	}
     
     public void logout() {

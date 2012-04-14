@@ -80,10 +80,6 @@ public class BookDetailActivity extends BaseActivity {
         	
         	setupViews();
             new BookFindAsyncTask().execute(isbn);
-        } else {
-        	// TODO empty view
-        	setupViews();
-        	setupMockupView();
         }
 	}
 	

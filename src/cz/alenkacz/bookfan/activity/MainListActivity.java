@@ -59,8 +59,6 @@ public class MainListActivity extends BaseActivity {
 		setContentView(R.layout.activity_main_list);
 
 		mPrefs = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
-		setupViews();
-		displayCurrentShelf();
 	}
 	
 	@Override
@@ -73,6 +71,9 @@ public class MainListActivity extends BaseActivity {
 			startActivity(i);
 			finish();
 		}
+		
+		setupViews();
+		displayCurrentShelf();
 	}
 	
 	@Override

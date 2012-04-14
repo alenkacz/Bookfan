@@ -13,7 +13,8 @@
         android:name=".Application" >
         <activity
             android:label="@string/app_name"
-            android:name=".activity.LoginActivity">
+            android:name=".activity.LoginActivity"
+            android:configChanges="orientation">
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -21,11 +22,13 @@
         </activity>
         <activity
             android:label="@string/app_name"
-            android:name=".activity.MainListActivity">
+            android:name=".activity.MainListActivity"
+            android:configChanges="orientation">
         </activity>
         <activity
             android:label="@string/app_name"
-            android:name=".activity.BookDetailActivity">
+            android:name=".activity.BookDetailActivity"
+            android:configChanges="orientation">
         </activity>
         <provider 
             android:authorities="cz.alenkacz.bookfan.provider.booksprovider" 

@@ -54,9 +54,9 @@ public class Utils {
 		StringBuilder sb = new StringBuilder(Constants.BACKEND_BOOK_ADD_URL);
 		sb.append(bookId);
 		sb.append("/");
-		sb.append(token);
-		sb.append("/");
 		sb.append(shelfId);
+		sb.append("/");
+		sb.append(token);
 		
 		return sb.toString();
 	}
