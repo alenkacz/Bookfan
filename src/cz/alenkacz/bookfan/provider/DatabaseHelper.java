@@ -7,6 +7,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+/**
+ * DB root class
+ * 
+ * @author Alena Varkockova (varkockova.a@gmail.com)
+ *
+ */
 public class DatabaseHelper extends SQLiteOpenHelper  {
 	static final String DATABASE_NAME = "bookfan.db";
     static final int DATABASE_VERSION = 1;

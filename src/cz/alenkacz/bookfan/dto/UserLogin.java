@@ -6,6 +6,12 @@ import java.security.NoSuchAlgorithmException;
 
 import cz.alenkacz.bookfan.tools.Utils;
 
+/**
+ * Stores user credentials during the login process
+ * 
+ * @author Alena Varkockova (varkockova.a@gmail.com)
+ *
+ */
 public class UserLogin {
 	public String email;
 	public String password;

@@ -35,6 +35,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Detail of the Book after scanning
+ * 
+ * @author Alena Varkockova (varkockova.a@gmail.com)
+ *
+ */
 public class BookDetailActivity extends BaseActivity {
 	
 	private Spinner mShelfSp;
@@ -163,7 +169,6 @@ public class BookDetailActivity extends BaseActivity {
 	
 	private void fillBookDetail(BookSearchContainer bookContainer) {
 		mActiveLayout.setVisibility(View.VISIBLE);
-		//mLoadingTv.setVisibility(View.GONE);
 		
 		Book book = bookContainer.results;
 		

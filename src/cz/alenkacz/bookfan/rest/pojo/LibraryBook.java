@@ -1,5 +1,11 @@
 package cz.alenkacz.bookfan.rest.pojo;
 
+/**
+ * Book in the library
+ * 
+ * @author Alena Varkockova (varkockova.a@gmail.com)
+ *
+ */
 public class LibraryBook {
 	public String UNI_BOOK_KEY;
 	private String BOOK_TITLE;

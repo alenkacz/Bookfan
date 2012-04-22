@@ -4,6 +4,12 @@ import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Error from backend
+ * 
+ * @author Alena Varkockova (varkockova.a@gmail.com)
+ *
+ */
 public class ErrorContainer {
 	private String errormsg;
 	

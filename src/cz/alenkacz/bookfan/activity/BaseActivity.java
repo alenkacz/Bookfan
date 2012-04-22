@@ -16,6 +16,12 @@ import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.os.Bundle;
 
+/**
+ * Root of all activities with common functionality
+ * 
+ * @author Alena Varkockova (varkockova.a@gmail.com)
+ *
+ */
 public class BaseActivity extends SherlockActivity {
 	
 	private SharedPreferences mPrefs;
@@ -50,12 +56,6 @@ public class BaseActivity extends SherlockActivity {
 		 Intent intent = new Intent("com.google.zxing.client.android.SCAN");
 		 intent.putExtra("SCAN_MODE", "EAN_13_MODE");
 		 startActivityForResult(intent, 0);
-		 
-
-		// TODO re-enable scanning
-		/*Intent i = new Intent(getApplicationContext(), BookDetailActivity.class);
-		i.putExtra(Constants.EXTRA_ISBN, "9788024233109");
-		startActivity(i);*/
 	}
     
     public void logout() {

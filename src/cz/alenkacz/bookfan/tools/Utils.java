@@ -13,6 +13,12 @@ import org.apache.http.impl.cookie.BasicClientCookie;
 
 import cz.alenkacz.bookfan.dto.UserLogin;
 
+/**
+ * Various utilities
+ * 
+ * @author Alena Varkockova (varkockova.a@gmail.com)
+ *
+ */
 public class Utils {
 	public static String getLoginUrl(UserLogin user) {
 		StringBuilder sb = new StringBuilder(Constants.BACKEND_LOGIN_URL);
@@ -54,9 +60,9 @@ public class Utils {
 		StringBuilder sb = new StringBuilder(Constants.BACKEND_BOOK_ADD_URL);
 		sb.append(bookId);
 		sb.append("/");
-		sb.append(shelfId);
-		sb.append("/");
 		sb.append(token);
+		sb.append("/");
+		sb.append(shelfId);
 		
 		return sb.toString();
 	}

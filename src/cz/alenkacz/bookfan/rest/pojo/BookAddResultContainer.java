@@ -4,6 +4,12 @@ import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Result of the book add call
+ * 
+ * @author Alena Varkockova (varkockova.a@gmail.com)
+ *
+ */
 public class BookAddResultContainer {
 	public int saved;
 	private String errormsg;

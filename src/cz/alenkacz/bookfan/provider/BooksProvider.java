@@ -15,6 +15,12 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.util.Log;
 
+/**
+ * DB provider for stored books
+ * 
+ * @author Alena Varkockova (varkockova.a@gmail.com)
+ *
+ */
 public class BooksProvider extends ContentProvider  {
 
 	private static final UriMatcher mUriMatcher;

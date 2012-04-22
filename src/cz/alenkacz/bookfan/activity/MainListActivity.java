@@ -15,7 +15,6 @@ import com.actionbarsherlock.view.MenuItem;
 import com.google.gson.Gson;
 
 import cz.alenkacz.bookfan.R;
-import cz.alenkacz.bookfan.dto.Book;
 import cz.alenkacz.bookfan.dto.UserLogin;
 import cz.alenkacz.bookfan.provider.BooksProvider.Books;
 import cz.alenkacz.bookfan.rest.pojo.BookSearchContainer;
@@ -44,6 +43,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Activity with list of books in user's library
+ * 
+ * @author Alena Varkockova (varkockova.a@gmail.com)
+ *
+ */
 public class MainListActivity extends BaseActivity {
 
 	private ListView mBooksList;

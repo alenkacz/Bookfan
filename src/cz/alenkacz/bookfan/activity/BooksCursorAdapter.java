@@ -6,7 +6,6 @@ import java.util.List;
 import com.google.android.imageloader.ImageLoader;
 
 import cz.alenkacz.bookfan.R;
-import cz.alenkacz.bookfan.dto.Book;
 import cz.alenkacz.bookfan.provider.BooksProvider.Books;
 import cz.alenkacz.bookfan.rest.pojo.LibraryBook;
 import cz.alenkacz.bookfan.tools.Constants;
@@ -20,6 +19,12 @@ import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * Adapter for the list of books in users library
+ * 
+ * @author Alena Varkockova (varkockova.a@gmail.com)
+ *
+ */
 public class BooksCursorAdapter extends CursorAdapter {
 	
 	private List<LibraryBook> mItems;

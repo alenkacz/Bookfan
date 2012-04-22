@@ -39,6 +39,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * Activity with login and facebook connect functionality
+ * 
+ * @author Alena Varkockova (varkockova.a@gmail.com)
+ *
+ */
 public class LoginActivity extends SherlockActivity {
 	private Facebook mFacebook;
 	private SharedPreferences mPrefs;

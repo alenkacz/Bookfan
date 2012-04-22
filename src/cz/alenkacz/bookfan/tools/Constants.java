@@ -1,5 +1,11 @@
 package cz.alenkacz.bookfan.tools;
 
+/**
+ * Constant strings and configuration
+ * 
+ * @author Alena Varkockova (varkockova.a@gmail.com)
+ *
+ */
 public class Constants {
 	public static final String LOGTAG = "Bookfan";
 	

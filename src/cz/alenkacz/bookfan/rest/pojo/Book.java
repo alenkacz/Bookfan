@@ -1,5 +1,11 @@
 package cz.alenkacz.bookfan.rest.pojo;
 
+/**
+ * Single book item
+ * 
+ * @author Alena Varkockova (varkockova.a@gmail.com)
+ *
+ */
 public class Book {
 	public String BOOK_ID;
 	public String BOOK_ISBN;
