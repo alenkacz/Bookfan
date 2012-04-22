@@ -13,6 +13,7 @@ import com.google.android.imageloader.ImageLoader;
 import com.google.gson.Gson;
 
 import cz.alenkacz.bookfan.R;
+import cz.alenkacz.bookfan.provider.BooksProvider.Books;
 import cz.alenkacz.bookfan.rest.pojo.Book;
 import cz.alenkacz.bookfan.rest.pojo.BookAddResultContainer;
 import cz.alenkacz.bookfan.rest.pojo.BookSearchContainer;
@@ -21,6 +22,8 @@ import cz.alenkacz.bookfan.tools.Constants;
 import cz.alenkacz.bookfan.tools.Utils;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -297,7 +300,22 @@ public class BookDetailActivity extends BaseActivity {
 		private void addSuccess() {
         	Toast.makeText(getApplicationContext(), getString(R.string.book_add_success), 
         			Toast.LENGTH_LONG).show();
+        	
+        	saveBookToDB();
         }
+		
+		private void saveBookToDB() {
+			ContentResolver cr = getContentResolver();
+			ContentValues values = new ContentValues();
+			values.put(Books.SHELF_ID, (int)mShelfSp.getSelectedItemId()+1);
+			values.put(Books.TITLE, mDownloadedBook.BOOK_TITLE);
+			values.put(Books.AUTHOR, mDownloadedBook.AUTHOR_FULL_NAME);
+			values.put(Books.IMAGE, mDownloadedBook.BOOK_COVER);
+			values.put(Books.SERVER_UID, mDownloadedBook.BOOK_ID);
+			values.put(Books.URL, mDownloadedBook.BOOK_URL);
+			
+			cr.insert(Books.CONTENT_URI, values);
+		}
 		
 	}
 	
@@ -334,7 +352,7 @@ public class BookDetailActivity extends BaseActivity {
         	mSearchingDialog.dismiss();
         	
             if(result != null) {
-            	// workaround - API returns array if nothing found, object if found
+            	// workaround - API returns array if nothing found, it returns object instead
             	ErrorContainer error = new Gson().fromJson(result, ErrorContainer.class);
             	if(error.getErrormsg() == null || error.getErrormsg().length() == 0) {
             		BookSearchContainer book = new Gson().fromJson(result, BookSearchContainer.class);

@@ -130,12 +130,6 @@ public class MainListActivity extends BaseActivity {
 			
 		});
 	}
-	
-	private void resetShelfSettings() {
-		Editor e = mPrefs.edit();
-        e.putInt(Constants.PREFS_SHELF_ID, 1);
-        e.commit();
-	}
 
 	private void downloadBooks() {
 		int shelfId = mPrefs.getInt(Constants.PREFS_SHELF_ID, 1);
