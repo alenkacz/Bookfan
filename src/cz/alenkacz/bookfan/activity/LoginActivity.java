@@ -72,6 +72,7 @@ public class LoginActivity extends SherlockActivity {
         if(isLoggedIn()) {
         	final Intent i = new Intent(getApplicationContext(), MainListActivity.class);
         	startActivity(i);
+        	finish();
         }
     }
     
