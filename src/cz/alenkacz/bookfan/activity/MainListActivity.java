@@ -34,6 +34,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -246,6 +247,8 @@ public class MainListActivity extends BaseActivity {
 		protected void onPostExecute(String result) {
 			mDownloadingDialog.dismiss();
 
+			Log.d(Constants.LOGTAG, "received result: "+ result);
+			
 			if (result != null) {
 				BooksLibraryContainer downloaded = new Gson().fromJson(result,
 						BooksLibraryContainer.class);

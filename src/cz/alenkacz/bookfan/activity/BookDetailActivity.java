@@ -29,6 +29,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -259,6 +260,8 @@ public class BookDetailActivity extends BaseActivity {
 	        			mPrefs.getString(Constants.PREFS_LOGIN_TOKEN, ""));
 				HttpGet get = new HttpGet(Utils.getBookAddUrl(
 						mDownloadedBook.BOOK_ID, shelfId, token));
+				
+				Log.d(Constants.LOGTAG, "sending request to url: "+ get.getURI());
 	
 				HttpResponse resp = hc.execute(get);
 				int status = resp.getStatusLine().getStatusCode();
@@ -277,6 +280,8 @@ public class BookDetailActivity extends BaseActivity {
 		@Override
         protected void onPostExecute(String result) {
 			mBookAddDialog.dismiss();
+			
+			Log.d(Constants.LOGTAG, "received result: "+ result);
 			
             if(result != null) {
             	BookAddResultContainer addResult = new Gson().fromJson(result, 
