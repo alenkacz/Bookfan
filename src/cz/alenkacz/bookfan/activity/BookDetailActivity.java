@@ -26,6 +26,7 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -306,8 +307,19 @@ public class BookDetailActivity extends BaseActivity {
         	Toast.makeText(getApplicationContext(), getString(R.string.book_add_success), 
         			Toast.LENGTH_LONG).show();
         	
-        	saveBookToDB();
+        	if(!bookInserted()) {
+        		saveBookToDB();
+        	}
         }
+		
+		private boolean bookInserted() {
+			ContentResolver cr = getContentResolver();
+			final String[] projection = { Books._ID };
+			Cursor result = cr.query(Books.CONTENT_URI, projection, 
+					Books.SERVER_UID + "=" + mDownloadedBook.BOOK_ID, null, null);
+			
+			return (result.getCount() > 0);
+		}
 		
 		private void saveBookToDB() {
 			ContentResolver cr = getContentResolver();

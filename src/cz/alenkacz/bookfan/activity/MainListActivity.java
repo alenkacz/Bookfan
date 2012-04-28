@@ -252,8 +252,14 @@ public class MainListActivity extends BaseActivity {
 			if (result != null) {
 				BooksLibraryContainer downloaded = new Gson().fromJson(result,
 						BooksLibraryContainer.class);
-				deleteCurrentShelfInDb();
-				saveToDb(downloaded.books);
+				if(downloaded.books == null) {
+					Toast.makeText(getApplicationContext(), getString(R.string.login_token_error), 
+		        			Toast.LENGTH_LONG).show();
+					logout();
+				} else {
+					deleteCurrentShelfInDb();
+					saveToDb(downloaded.books);
+				}
 				
 				displayCurrentShelf();
 			} else {
