@@ -1,6 +1,7 @@
 package cz.alenkacz.bookfan.activity;
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
@@ -22,7 +23,7 @@ import android.os.Bundle;
  * @author Alena Varkockova (varkockova.a@gmail.com)
  *
  */
-public class BaseActivity extends SherlockActivity {
+public class BaseActivity extends SherlockFragmentActivity {
 	
 	private SharedPreferences mPrefs;
 	

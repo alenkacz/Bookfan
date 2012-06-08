@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <ListView
+        android:id="@+id/books_list_lv"
+        android:layout_height="fill_parent"
+     	android:layout_width="fill_parent"
+     	android:visibility="gone"
+     	style="@style/Theme.Bookfan.List.Container"  /> 
+     	
+     <LinearLayout
+        android:id="@+id/books_list_empty_layout"
+        android:layout_height="fill_parent"
+     	android:layout_width="fill_parent"
+     	android:gravity="center"
+     	android:orientation="vertical" >
+        
+        <TextView
+	        android:id="@+id/books_list_empty_download_tv"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center"
+	        android:text="@string/list_empty" />
+        
+        <LinearLayout
+        android:layout_height="wrap_content"
+     	android:layout_width="fill_parent"
+     	android:gravity="center"
+     	android:orientation="horizontal" >
+     	
+	        <Button 
+	            android:id="@+id/books_list_empty_download_btn"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:gravity="center"
+	            android:text="@string/list_first_download_btn"
+	            style="@style/Theme.Bookfan.List.Button" /> 
+	        
+	        <Button 
+	            android:id="@+id/books_list_empty_btn"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:gravity="center"
+	            android:text="@string/list_empty_add_btn"
+	            style="@style/Theme.Bookfan.List.Button" />
+        </LinearLayout> 
+	</LinearLayout>
+      
+</merge>
