@@ -86,7 +86,7 @@ public class MainListActivity extends BaseActivity {
 
 		mPrefs = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
 		
-		mAdapter = new MyAdapter(getSupportFragmentManager());
+		mAdapter = new MyAdapter(getApplicationContext());
 
         mPager = (ViewPager)findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
@@ -328,21 +328,26 @@ public class MainListActivity extends BaseActivity {
 		}
 	}
 	
-	public static class MyAdapter extends FragmentPagerAdapter {
+	public static class MyAdapter extends PagerAdapter {
 		
-		public MyAdapter(FragmentManager fm) {
-            super(fm);
+		private LayoutInflater inflater;
+		private Context context;
+		
+		public MyAdapter(Context ctx) {
+			context = ctx;
+			inflater = LayoutInflater.from(ctx);
         }
-		
-		@Override
-		public Fragment getItem(int position) {
-			return ArrayListFragment.newInstance(position);
-		}
 
 		@Override
 		public int getCount() {
 			return SHELFS_NUM;
 		}	
+		
+		@Override
+		public Object instantiateItem(View container, int position) {
+			View layout = inflater.inflate(R.layout.part_viewpager_content, null);
+			return layout;
+		}
 		
 		@Override
 		public String getPageTitle(int number){
@@ -355,6 +360,12 @@ public class MainListActivity extends BaseActivity {
 			} else {
 				return "Chci číst";
 			}
+		}
+
+		@Override
+		public boolean isViewFromObject(View arg0, Object arg1) {
+			// TODO Auto-generated method stub
+			return false;
 		}
 	}
     
@@ -400,8 +411,7 @@ public class MainListActivity extends BaseActivity {
         @Override
         public void onActivityCreated(Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
-            setListAdapter(new ArrayAdapter<String>(getActivity(),
-                    android.R.layout.simple_list_item_1, new String[]{ "aa", "bb" }));
+            // TODO
         }
 
         @Override
