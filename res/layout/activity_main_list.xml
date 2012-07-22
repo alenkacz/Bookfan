@@ -6,6 +6,7 @@
     
     <com.viewpagerindicator.TitlePageIndicator
 		android:id="@+id/titles"
+		style="@style/Widget.MyTitlepageIndicator"
 		android:layout_height="wrap_content"
 		android:layout_width="fill_parent" />
 	

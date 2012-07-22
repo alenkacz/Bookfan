@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-   
+   <style name="Widget.MyTitlepageIndicator">
+        <item name="footerColor">#574A3B</item>
+        <item name="footerIndicatorStyle">underline</item>
+        <item name="footerIndicatorHeight">3dp</item>
+        <item name="footerLineHeight">1.5dp</item>
+        <item name="footerPadding">6dp</item>
+        <item name="selectedColor">#000</item>
+        <item name="android:textColor">#000</item>
+    </style>
+    
+    
    <style name="Theme.Bookfan" parent="style/Theme.Sherlock.Light">
     <item name="actionBarStyle">@style/Theme.Bookfan.Actionbar</item>
     <item name="android:actionBarStyle">@style/Theme.Bookfan.Actionbar</item>

@@ -329,7 +329,7 @@ public class MainListActivity extends BaseActivity {
 	}
 	
 	public static class MyAdapter extends FragmentPagerAdapter {
-
+		
 		public MyAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -342,11 +342,24 @@ public class MainListActivity extends BaseActivity {
 		@Override
 		public int getCount() {
 			return SHELFS_NUM;
-		}		
+		}	
+		
+		@Override
+		public String getPageTitle(int number){
+			if(number == ShelfEnum.home.ordinal()) {
+				return "Mám ji doma";
+			} else if(number == ShelfEnum.read.ordinal()) {
+				return "Četl jsem";
+			} else if(number == ShelfEnum.reading.ordinal()) {
+				return "Právě čtu";
+			} else {
+				return "Chci číst";
+			}
+		}
 	}
     
     public static class ArrayListFragment extends ListFragment {
-        int mNum;
+        ShelfEnum mShelf;
 
         /**
          * Create a new instance of CountingFragment, providing "num"
@@ -354,10 +367,11 @@ public class MainListActivity extends BaseActivity {
          */
         static ArrayListFragment newInstance(int num) {
             ArrayListFragment f = new ArrayListFragment();
-
+            
             // Supply num input as an argument.
             Bundle args = new Bundle();
             args.putInt("num", num);
+            args.putString("title", "aa");
             f.setArguments(args);
 
             return f;
@@ -369,7 +383,7 @@ public class MainListActivity extends BaseActivity {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            mNum = getArguments() != null ? getArguments().getInt("num") : 1;
+            mShelf = getArguments() != null ? ShelfEnum.values()[getArguments().getInt("num")] : ShelfEnum.reading;
         }
 
         /**
@@ -380,8 +394,6 @@ public class MainListActivity extends BaseActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.part_fragment_pager_list, container, false);
-            View tv = v.findViewById(R.id.text);
-            ((TextView)tv).setText("Fragment #" + mNum);
             return v;
         }
 
