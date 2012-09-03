@@ -30,6 +30,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -70,7 +71,7 @@ public class MainListActivity extends BaseActivity {
 	@Override
 	public void onResume() {
 		super.onResume();
-		
+
 		if(!isLoggedIn()) {
 			Intent i = new Intent(getApplicationContext(), LoginActivity.class);
 			i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -195,10 +196,13 @@ public class MainListActivity extends BaseActivity {
 	
 	private void displayCurrentShelf() {
 		int shelfId = getCurrentShelfId();
+		
 		displayShelf(shelfId);
 	}
 	
 	private void displayShelf(int shelfId) {
+		setShelfNameTitle(shelfId);
+		
 		ContentResolver cr = getContentResolver();
 		final String[] projection = { Books._ID, Books.AUTHOR, Books.IMAGE, 
 				Books.SHELF_ID, Books.TITLE, Books.URL };
@@ -210,6 +214,15 @@ public class MainListActivity extends BaseActivity {
 		
 		if(result.getCount() == 0) {
 			mBooksList.setEmptyView(findViewById(R.id.books_list_empty_layout));
+		}
+	}
+
+	private void setShelfNameTitle(int shelfId) {
+		String shelfName = Utils.getShelfName(ShelfEnum.values()[shelfId], this);
+		if(shelfName != null && shelfName != "") {
+			setTitle(shelfName);
+		} else {
+			setTitle("Bookfan");
 		}
 	}
 

@@ -28,7 +28,7 @@
     <style name="Theme.Bookfan.Actionbar.Title">
         <item name="android:textColor">@color/actionbar_title</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">16dip</item>
+        <item name="android:textSize">14dip</item>
     </style>
     
     <style name="Theme.Bookfan.List">

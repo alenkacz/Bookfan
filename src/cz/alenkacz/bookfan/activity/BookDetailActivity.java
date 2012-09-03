@@ -307,6 +307,8 @@ public class BookDetailActivity extends BaseActivity {
         	Toast.makeText(getApplicationContext(), getString(R.string.book_add_success), 
         			Toast.LENGTH_LONG).show();
         	
+        	mAddBtn.setVisibility(View.INVISIBLE);
+        	
         	if(!bookInserted()) {
         		saveBookToDB();
         	}

@@ -11,6 +11,10 @@ import java.security.NoSuchAlgorithmException;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.cookie.BasicClientCookie;
 
+import cz.alenkacz.bookfan.R;
+import android.content.Context;
+
+import cz.alenkacz.bookfan.activity.ShelfEnum;
 import cz.alenkacz.bookfan.dto.UserLogin;
 
 /**
@@ -134,5 +138,25 @@ public class Utils {
 
 		return client;
     }
+	
+	public static String getShelfName(ShelfEnum shelf, Context context) {
+		if(shelf == ShelfEnum.home) {
+			return context.getString(R.string.menu_shelf_home);
+		}
+		
+		if(shelf == ShelfEnum.read) {
+			return context.getString(R.string.menu_shelf_read);
+		}
+		
+		if(shelf == ShelfEnum.reading) {
+			return context.getString(R.string.menu_shelf_reading);
+		}
+		
+		if(shelf == ShelfEnum.toread) {
+			return context.getString(R.string.menu_shelf_toread);
+		}
+
+		return "";
+	}
 
 }
